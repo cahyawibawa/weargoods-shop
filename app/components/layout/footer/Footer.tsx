@@ -1,6 +1,7 @@
 "use client";
 
 import { InputWithButton } from "@/components/Subscribe";
+import { ModeToggle } from "@/components/ToggleMode";
 import { Instagram, Facebook } from "lucide-react";
 export default function Footer() {
   return (
@@ -142,8 +143,7 @@ export default function Footer() {
 
             <div className="mx-auto mt-8 max-w-md sm:ms-0">
               <p className="pb-6 text-muted-foreground text-sm">
-                Be the first to hear about product launches, collaborations, and
-                more when you sign up for our emails..
+                Join our newsletter to get the latest news and updates
               </p>
             </div>
             <InputWithButton />
@@ -155,7 +155,7 @@ export default function Footer() {
             Copyright &copy; {new Date().getFullYear()}{" "}
             {process.env.NEXT_PUBLIC_SITE_NAME}. All rights reserved.
           </p>
-
+          {/* 
           <ul className="mt-4 flex justify-center gap-6 sm:mt-0 sm:justify-start">
             <li>
               <a
@@ -179,7 +179,8 @@ export default function Footer() {
                 <Facebook />
               </a>
             </li>
-          </ul>
+          </ul> */}
+          <ModeToggle />
         </div>
       </div>
     </footer>

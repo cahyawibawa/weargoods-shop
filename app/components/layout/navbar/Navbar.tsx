@@ -1,17 +1,16 @@
 "use client";
 
 import { CommandMenu } from "@/components/CommandMenu";
-import { ModeToggle } from "@/components/ToggleMode";
 import { AvatarDropdown } from "@/components/layout/navbar/AvatarDropdown";
 import useMenu from "@/hooks/useMenu";
 import useUser from "@/hooks/useUser";
 import { Dialog, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { CartButton } from "./CartButton";
-import { LogIn, User, PanelRightClose } from "lucide-react";
+import { User, PanelRightClose } from "lucide-react";
 type Props = {
   categories: swell.Category[];
 };
@@ -68,7 +67,7 @@ export default function Navbar({ categories }: Props) {
                   </button>
                 </div>
 
-                <div className="mt-2 space-y-6 border-gray-200 px-4 py-6">
+                <div className="mt-2 space-y-6 border-muted px-4 py-6">
                   {categories.map((category) => (
                     <div key={category.id} className="flow-root">
                       <Link
@@ -83,12 +82,12 @@ export default function Navbar({ categories }: Props) {
                 </div>
 
                 {!isLoading && !user && (
-                  <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                  <div className="space-y-6 border-t border-muted px-4 py-6">
                     <div className="flow-root">
                       <Link
                         href="/signin"
                         onClick={handleClose}
-                        className="-m-2 block p-2 font-medium text-gray-900"
+                        className="-m-2 block p-2 font-medium text-muted-foreground"
                       >
                         Sign in
                       </Link>
@@ -97,7 +96,7 @@ export default function Navbar({ categories }: Props) {
                       <Link
                         href="/signup"
                         onClick={handleClose}
-                        className="-m-2 block p-2 font-medium text-gray-900"
+                        className="-m-2 block p-2 font-medium text-muted-foreground"
                       >
                         Create account
                       </Link>
@@ -170,52 +169,23 @@ export default function Navbar({ categories }: Props) {
                 <div className="w-full flex-1 md:w-auto md:flex-none">
                   <CommandMenu />
                 </div>
-                <ModeToggle />
-                {!isLoading && (
-                  <>
-                    {user ? (
-                      <div className="flex">
-                        <AvatarDropdown />
-                      </div>
-                    ) : (
-                      <div className="mr-2 hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                        <Link href="/signin" className="text-sm font-medium">
-                          <User aria-hidden="true" />
-                        </Link>
-                        {/* <span
-													className="h-6 w-px bg-accent"
-													aria-hidden="true"
-												/>
-												<Link
-													href="/signup"
-													className="text-sm font-medium text-gray-700 hover:text-gray-800"
-												>
-													Create account
-												</Link>
-												<span
-													className="h-6 w-px bg-accent"
-													aria-hidden="true"
-												/> */}
-                      </div>
-                    )}
-                  </>
-                )}
+                {/* <ModeToggle /> */}
+
+                <>
+                  {user ? (
+                    <div className="flex">
+                      <AvatarDropdown />
+                    </div>
+                  ) : (
+                    <div className="mr-2 hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                      <Link href="/signin" className="text-sm font-medium">
+                        <User aria-hidden="true" />
+                      </Link>
+                    </div>
+                  )}
+                </>
+
                 <CartButton />
-                {/* <div className="ml-4 mr-2 flow-root lg:ml-6">
-                  <Link
-                    href="/search"
-                    className="group -m-2 flex items-center p-2"
-                  >
-                    <MagnifyingGlassIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-
-                    <span className="sr-only">searh products</span>
-                  </Link>
-                </div> */}
-
-                {/* <div className="ml-4 flow-root lg:ml-6"></div> */}
               </div>
             </div>
           </div>
