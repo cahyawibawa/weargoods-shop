@@ -4,6 +4,7 @@ import { CommandMenu } from "@/components/CommandMenu";
 import { AvatarDropdown } from "@/components/layout/navbar/AvatarDropdown";
 import useMenu from "@/hooks/useMenu";
 import useUser from "@/hooks/useUser";
+import { usePathname } from "next/navigation";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -11,6 +12,9 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { CartButton } from "./CartButton";
 import { User, PanelRightClose } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/Button";
+import { siteConfig } from "@/config/site";
 type Props = {
   categories: swell.Category[];
 };
@@ -22,6 +26,7 @@ export default function Navbar({ categories }: Props) {
 
   const handleOpen = () => open("header");
   const handleClose = () => close("header");
+  const pathname = usePathname();
 
   const { user, isLoading } = useUser();
 
@@ -124,9 +129,7 @@ export default function Navbar({ categories }: Props) {
 
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/">
-                  <span className="sr-only">
-                    {process.env.NEXT_PUBLIC_SITE_NAME}
-                  </span>
+                  <span className="sr-only">{siteConfig.name}</span>
                   <Image
                     priority
                     className="mx-auto h-8 w-auto"
@@ -142,7 +145,12 @@ export default function Navbar({ categories }: Props) {
                 <div className="flex h-full space-x-8">
                   <Link
                     href="/filter"
-                    className="flex items-center self-center text-sm font-medium text-foreground transition-colors hover:text-foreground/80"
+                    className={cn(
+                      "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
+                      pathname?.startsWith("/filter")
+                        ? "text-foreground"
+                        : "text-foreground/60"
+                    )}
                   >
                     Shop
                   </Link>
@@ -157,7 +165,12 @@ export default function Navbar({ categories }: Props) {
                     <Link
                       key={category.id}
                       href={`/${category.slug}`}
-                      className="flex items-center self-center text-sm font-medium text-foreground transition-colors hover:text-foreground/80"
+                      className={cn(
+                        "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
+                        pathname?.startsWith(`/${category.slug}`)
+                          ? "text-foreground"
+                          : "text-foreground/60"
+                      )}
                     >
                       {category.name}
                     </Link>
@@ -177,11 +190,19 @@ export default function Navbar({ categories }: Props) {
                       <AvatarDropdown />
                     </div>
                   ) : (
-                    <div className="mr-2 hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                      <Link href="/signin" className="text-sm font-medium">
+                    <Link href="/signin" className="text-sm font-medium">
+                      <div
+                        className={cn(
+                          buttonVariants({
+                            size: "sm",
+                            variant: "ghost",
+                          }),
+                          "w-9 px-0"
+                        )}
+                      >
                         <User aria-hidden="true" />
-                      </Link>
-                    </div>
+                      </div>
+                    </Link>
                   )}
                 </>
 
