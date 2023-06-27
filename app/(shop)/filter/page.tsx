@@ -1,4 +1,4 @@
-import { SidebarFilter } from "@/components/SidebarFilter";
+import { SidebarFilter } from "@/components/sidebar-filter";
 import ProductCard from "@/components/products/ProductCard";
 import { getProductFilters } from "@/lib/swell/filters";
 import { getProducts } from "@/lib/swell/products";
