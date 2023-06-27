@@ -8,7 +8,6 @@ import { useSWRConfig } from "swr";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Button } from "../ui/Button";
-import { Blinker } from "../ui/Loading";
 import { Loader2 } from "lucide-react";
 type Props = {
   product: swell.Product & { categories: swell.Category[] };
@@ -98,7 +97,7 @@ export default function ProductOverview({ product }: Props) {
           <h2 className="sr-only">Product information</h2>
 
           <p className="text-3xl tracking-tight text-foreground">
-            {new Intl.NumberFormat("en-US", {
+            {new Intl.NumberFormat("id-ID", {
               style: "currency",
               currency: "IDR",
             }).format(product.price || 0)}

@@ -1,7 +1,7 @@
 import useMenu from "@/hooks/useMenu";
 import { getCart, removeFromCart } from "@/lib/swell/cart";
 import { Dialog, Transition } from "@headlessui/react";
-import { ShoppingBagIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -22,20 +22,16 @@ export default function CartButton() {
 
   return (
     <>
-      <button
-        type="button"
-        className="group -m-2 flex items-center p-2"
-        onClick={handleOpen}
-      >
-        <ShoppingBag
-          // className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-          aria-hidden="true"
-        />
-        <span className="ml-2 text-sm font-medium text-foreground transition-colors hover:text-foreground/80">
-          {counter}
-        </span>
+      <button type="button" className="group" onClick={handleOpen}>
+        <ShoppingBag aria-hidden="true" />
+        {counter > 0 && (
+          <span className="absolute top-5 right-1 flex items-center justify-center w-4 h-4 bg-blue-500 text-xs text-foreground rounded-full">
+            {counter}
+          </span>
+        )}
         <span className="sr-only">items in cart, view bag</span>
       </button>
+
       <Transition.Root show={opened} as={Fragment}>
         <Dialog as="div" className="relative z-30" onClose={handleClose}>
           <Transition.Child
@@ -116,7 +112,7 @@ export default function CartButton() {
                                           </Link>
                                         </h3>
                                         <p className="ml-4">
-                                          {new Intl.NumberFormat("en-US", {
+                                          {new Intl.NumberFormat("id-ID", {
                                             style: "currency",
                                             currency: data.currency,
                                           }).format(item.price_total || 0)}
@@ -157,9 +153,9 @@ export default function CartButton() {
                         <div className="flex justify-between text-base font-medium text-foreground">
                           <p>Subtotal</p>
                           <p>
-                            {new Intl.NumberFormat("en-US", {
+                            {new Intl.NumberFormat("id-ID", {
                               style: "currency",
-                              currency: data?.currency || "USD",
+                              currency: data?.currency || "IDR",
                             }).format(data?.sub_total || 0)}
                           </p>
                         </div>
