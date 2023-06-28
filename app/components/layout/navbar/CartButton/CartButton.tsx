@@ -7,6 +7,9 @@ import Link from "next/link";
 import { Fragment } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { ShoppingBag } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 export default function CartButton() {
   const opened = useMenu((state) => state.cart);
   const open = useMenu((state) => state.open);
@@ -22,7 +25,18 @@ export default function CartButton() {
 
   return (
     <>
-      <button type="button" className="group" onClick={handleOpen}>
+      <Button
+        variant="ghost"
+        onClick={handleOpen}
+        // eslint-disable-next-line react/jsx-no-duplicate-props
+        className={cn(
+          buttonVariants({
+            size: "sm",
+            variant: "outline",
+          }),
+          "w-9 px-0 group"
+        )}
+      >
         <ShoppingBag aria-hidden="true" />
         {counter > 0 && (
           <span className="absolute top-5 right-1 flex items-center justify-center w-4 h-4 bg-blue-500 text-xs text-foreground rounded-full">
@@ -30,7 +44,7 @@ export default function CartButton() {
           </span>
         )}
         <span className="sr-only">items in cart, view bag</span>
-      </button>
+      </Button>
 
       <Transition.Root show={opened} as={Fragment}>
         <Dialog as="div" className="relative z-30" onClose={handleClose}>

@@ -190,14 +190,14 @@ export default function Navbar({ categories }: Props) {
                       <AvatarDropdown />
                     </div>
                   ) : (
-                    <Link href="/signin" className="text-sm font-medium">
+                    <Link href="/signin">
                       <div
                         className={cn(
                           buttonVariants({
                             size: "sm",
-                            variant: "ghost",
+                            variant: "outline",
                           }),
-                          "w-9 px-0"
+                          "w-9 px-0 "
                         )}
                       >
                         <User aria-hidden="true" />
