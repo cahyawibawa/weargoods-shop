@@ -78,7 +78,12 @@ export default function Navbar({ categories }: Props) {
                       <Link
                         href={`/${category.slug}`}
                         onClick={handleClose}
-                        className="-m-2 block p-2 font-medium text-muted-foreground"
+                        className={cn(
+                          "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
+                          pathname?.startsWith(`/${category.slug}`)
+                            ? "text-foreground"
+                            : "text-foreground/60"
+                        )}
                       >
                         {category.name}
                       </Link>
@@ -114,7 +119,7 @@ export default function Navbar({ categories }: Props) {
         </Dialog>
       </Transition.Root>
 
-      <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-20 bg-background/95 backdrop-blur">
+      <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 bg-background/95 backdrop-blur">
         <nav aria-label="Top">
           <div className="border-b border-input">
             <div className="flex h-16 items-center">
