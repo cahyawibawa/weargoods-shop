@@ -1,83 +1,93 @@
+import { siteConfig } from "@/config/site";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { BASE_URL } from "@/constants";
-import { fontSans } from "@/lib/fonts";
+import { fontSans, fontMono } from "@/lib/fonts";
 import { getCategories } from "@/lib/swell/categories";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "@/components/ui/Toaster";
 import "./styles/globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  display: "swap",
-  subsets: ["latin"],
-});
-
-const roboto_mono = Roboto_Mono({
-  variable: "--font-roboto-mono",
-  display: "swap",
-  subsets: ["latin"],
-});
-
-const { NEXT_PUBLIC_SITE_NAME } = process.env;
-
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
   title: {
-    // rome-ignore lint/style/noNonNullAssertion: <explanation>
-    default: NEXT_PUBLIC_SITE_NAME!,
-    template: `%s | ${NEXT_PUBLIC_SITE_NAME}`,
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
   },
-  robots: {
-    follow: true,
-    index: true,
-  },
-  description: "High-performance ecommerce store built with Next.js and Swell.",
+  description: siteConfig.description,
+  keywords: [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Server Components",
+    "Server Actions",
+    "weargoods",
+    "Swell",
+    "commerce",
+    "e-commerce",
+  ],
+  authors: [
+    {
+      name: "cahya wibawa",
+      url: "https://github.com/cahyawibawa",
+    },
+  ],
+  creator: "cahya wibawa",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
   openGraph: {
-    images: [
-      {
-        url: `/api/og?title=${encodeURIComponent(
-          process.env.NEXT_PUBLIC_SITE_NAME || ""
-        )}`,
-        width: 1200,
-        height: 630,
-      },
-    ],
     type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/og.jpg`],
+    creator: "@lictoyagami",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 
 export const revalidate = 1800;
 
-type Props = {
+interface RootLayoutProps {
   children: React.ReactNode;
-};
+}
 
-export default async function RootLayout({ children }: Props) {
+export default async function RootLayout({ children }: RootLayoutProps) {
   const data = await getCategories();
   return (
-    <html lang="en-US">
-      <head />
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="mx-auto flex h-full max-w-7xl flex-col px-4 sm:px-6 lg:px-8">
-            <NextTopLoader showSpinner={false} color="rgb(79 70 229)" />
-            <Navbar categories={data.results} />
-            {children}
-            <Footer />
-          </div>
-        </ThemeProvider>
-        <Toaster />
-      </body>
-    </html>
+    <>
+      <ClerkProvider>
+        <html lang="en-US">
+          <head />
+          <body
+            className={cn(
+              "min-h-screen bg-background font-sans antialiased",
+              fontSans.variable,
+              fontMono.variable
+            )}
+          >
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </body>
+        </html>
+      </ClerkProvider>
+    </>
   );
 }
