@@ -2,12 +2,11 @@
 
 import { InputWithButton } from "@/components/Subscribe";
 import { ModeToggle } from "@/components/ToggleMode";
-import { Instagram, Facebook } from "lucide-react";
 export default function Footer() {
   return (
-    <footer aria-label="Site Footer" className="bg-background">
+    <footer aria-label="Site Footer">
       <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-0 sm:px-6 lg:px-0">
-        <div className="mt-4 grid grid-cols-1 gap-8 border-t border-input pt-16 md:grid-cols-4 lg:grid-cols-6">
+        <div className=" grid grid-cols-1 gap-8 border-t border-input pt-12 md:grid-cols-4 lg:grid-cols-6">
           <div className="text-center sm:text-left">
             <p className="text-lg font-medium text-gray-900 dark:text-white">
               About Us
