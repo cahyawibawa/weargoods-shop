@@ -5,7 +5,7 @@ export const getProducts = (input?: swell.ProductQuery & { search?: string }) =>
     ...input,
     expand: ["categories", "variants"],
     page: input?.page || 1,
-    limit: input?.limit || 25,
+    limit: input?.limit || 20,
   }) as Promise<
     swell.ResultsResponse<swell.Product & { categories: swell.Category[] }>
   >;
