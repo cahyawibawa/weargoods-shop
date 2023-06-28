@@ -1,30 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    reactStrictMode: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.swell.store',
-      },
-      {
-        protocol: 'https',
-        hostname: 'gravatar.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.schema.io',
-      },
-      {
-        protocol: 'https',
-        hostname: 'github.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.converse.id',
-      },
-    ],
+    domains: ["cdn.swell.store", "cdn.schema.io", "images.unsplash.com"],
   },
-}
+  experimental: {
+    appDir: true,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
