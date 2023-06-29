@@ -1,13 +1,10 @@
 "use client";
-
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Icons } from "@/components/Icons";
-
 import { createUser } from "@/lib/swell/account";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -18,6 +15,7 @@ type FormValues = {
   first_name: string;
   last_name: string;
   email: string;
+  email_optin: boolean;
   password: string;
 };
 
@@ -25,26 +23,18 @@ type FormValues = {
 interface SignUpFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function SignUpForm({ className, ...props }: SignUpFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const { mutate } = useSWRConfig();
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    const response = await createUser({
-      email: data.email,
-      password: data.password,
-    });
     setIsLoading(true);
+    const response = await createUser(data);
+    setIsLoading(false);
 
-    startTransition(() => {
-      mutate("/api/me", response);
-      router.refresh();
-      router.push("/");
-    });
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    mutate("/api/me", response);
+    router.refresh();
+    router.push("/");
   };
 
   return (
@@ -59,14 +49,13 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
             autoCapitalize="none"
             autoComplete="given-name"
             autoCorrect="off"
-            disabled={isLoading}
             {...register("first_name", {
               required: true,
             })}
           />
 
           <div className="grid gap-3">
-            <Label htmlFor="lastName">last name</Label>
+            <Label htmlFor="lastName">Last Name</Label>
             <Input
               id="lastName"
               placeholder=""
@@ -74,7 +63,6 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
               autoCapitalize="none"
               autoComplete="family-name"
               autoCorrect="off"
-              disabled={isLoading}
               {...register("last_name", {
                 required: true,
               })}
@@ -89,7 +77,6 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
               {...register("email", {
                 required: true,
               })}
@@ -104,14 +91,13 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
               autoCapitalize="none"
               autoComplete="current-password"
               autoCorrect="off"
-              disabled={isLoading}
               {...register("password", {
                 required: true,
               })}
             />
           </div>
-          <Button disabled={isPending}>
-            {isPending && (
+          <Button disabled={isLoading}>
+            {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
             Sign Up
