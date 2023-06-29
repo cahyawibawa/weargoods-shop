@@ -72,7 +72,7 @@ export default function Navbar({ categories }: Props) {
                   </button>
                 </div>
 
-                <div className="mt-2 space-y-6 border-muted px-4 py-6">
+                {/* <div className="mt-2 space-y-6 border-muted px-4 py-6">
                   {categories.map((category) => (
                     <div key={category.id} className="flow-root">
                       <Link
@@ -89,7 +89,7 @@ export default function Navbar({ categories }: Props) {
                       </Link>
                     </div>
                   ))}
-                </div>
+                </div> */}
 
                 {!isLoading && !user && (
                   <div className="space-y-6 border-t border-muted px-4 py-6">
@@ -164,7 +164,7 @@ export default function Navbar({ categories }: Props) {
 
               {/* Categories */}
 
-              <div className="hidden lg:ml-8 lg:block lg:self-stretch">
+              {/* <div className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {categories.map((category) => (
                     <Link
@@ -181,7 +181,7 @@ export default function Navbar({ categories }: Props) {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               <div className="ml-auto flex items-center space-x-1 ">
                 <div className="w-full flex-1 md:w-auto md:flex-none">
