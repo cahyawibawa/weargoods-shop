@@ -1,14 +1,12 @@
 import { siteConfig } from "@/config/site";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
 import { fontSans, fontMono } from "@/lib/fonts";
 import { getCategories } from "@/lib/swell/categories";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "@/components/ui/Toaster";
+import { Analytics } from "@vercel/analytics/react";
 import "./styles/globals.css";
 
 export const metadata: Metadata = {
@@ -83,6 +81,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           >
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               {children}
+              <Analytics />
               <Toaster />
             </ThemeProvider>
           </body>
