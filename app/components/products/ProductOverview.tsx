@@ -6,9 +6,10 @@ import classNames from "classnames";
 import Image from "next/image";
 import { useSWRConfig } from "swr";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { Button } from "../ui/Button";
 import { Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 type Props = {
   product: swell.Product & { categories: swell.Category[] };
 };
@@ -19,8 +20,19 @@ export default function ProductOverview({ product }: Props) {
   const [isPending, startTransition] = useTransition();
   const [loading, setLoading] = useState(false);
   const isMutating = loading || isPending;
+  const { toast } = useToast();
+  const [toastMessage, setToastMessage] = useState("");
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+  useEffect(() => {
+    if (!isMutating && toastMessage !== "") {
+      toast({
+        description: toastMessage,
+      });
+      setToastMessage(""); // Clear the toast message
+    }
+  }, [isMutating, toast, toastMessage]);
+  const handleSubmit = async (event: React.FormEvent) => {
+    // Change the event type
     event.preventDefault();
     setLoading(true);
     await addToCart({
@@ -30,12 +42,13 @@ export default function ProductOverview({ product }: Props) {
     setLoading(false);
     mutate("cart");
     startTransition(() => {
-      router.refresh();
+      router.refresh(); // Use replace() instead of refresh()
     });
+    setToastMessage("Successfully added to cart");
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+    <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:mb-12">
       {product.images && (
         <Tab.Group as="div" className="flex flex-col-reverse">
           <div className="mx-auto mt-6 w-full px-6 sm:px-0">
@@ -121,7 +134,7 @@ export default function ProductOverview({ product }: Props) {
           </div>
         )}
 
-        <form className="mt-6" onSubmit={handleSubmit}>
+        <form className="mb-8" onSubmit={handleSubmit}>
           <div className="mt-10 flex">
             <Button
               type="submit"
@@ -131,7 +144,7 @@ export default function ProductOverview({ product }: Props) {
               {isMutating ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (
-                "Add to Bag"
+                "Add to Cart"
               )}
             </Button>
           </div>
