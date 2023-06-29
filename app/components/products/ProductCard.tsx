@@ -2,12 +2,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 type Props = {
-  product: swell.Product & { categories: swell.Category[] };
+  product?: swell.Product & { categories: swell.Category[] };
+  isLoading?: boolean;
 };
 
-export default function ProductCard({ product }: Props) {
+export default function ProductCard({ product, isLoading = false }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -17,6 +19,22 @@ export default function ProductCard({ product }: Props) {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
+  if (isLoading) {
+    return (
+      <div className="group relative rounded-md border-b border-r border-input p-4 sm:p-6">
+        <Skeleton className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75" />
+        <div className="pb-4 pt-10 text-center">
+          <Skeleton className="h-4 w-[100%]" /> {/* Updated width to 100% */}
+          <Skeleton className="h-4 w-[100%]" /> {/* Updated width to 100% */}
+        </div>
+      </div>
+    );
+  }
+
+  if (!product) {
+    return null; // Return early if product is undefined
+  }
 
   return (
     <div
@@ -49,7 +67,7 @@ export default function ProductCard({ product }: Props) {
       </div>
       <div className="pb-4 pt-10 text-center">
         <p className="text-sm font-medium uppercase text-muted-foreground">
-          {product.categories && (
+          {product.categories?.[0] && (
             <Link href={`/${product.categories[0].slug}/${product.slug}`}>
               <span aria-hidden="true" className="absolute inset-0" />
               {product.name}
