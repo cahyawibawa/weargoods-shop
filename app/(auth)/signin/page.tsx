@@ -15,7 +15,7 @@ import { Shell } from "@/components/Shell";
 import { buttonVariants } from "@/components/ui/Button";
 import { Icons } from "@/components/Icons";
 export const metadata: Metadata = {
-  title: "Sign In | Weargoods",
+  title: "Sign In",
   description: "Sign in to your Weargoods account.",
 };
 
