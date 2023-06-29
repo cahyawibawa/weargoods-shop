@@ -138,7 +138,7 @@ export default function Navbar({ categories }: Props) {
                   <Image
                     priority
                     className="mx-auto h-8 w-auto"
-                    src="/white-logo.png"
+                    src="/images/white-logo.png"
                     alt=""
                     width={30}
                     height={30}
@@ -202,7 +202,7 @@ export default function Navbar({ categories }: Props) {
                             size: "sm",
                             variant: "outline",
                           }),
-                          "w-9 px-0 "
+                          "w-9 px-0"
                         )}
                       >
                         <User aria-hidden="true" />
