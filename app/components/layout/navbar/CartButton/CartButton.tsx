@@ -98,11 +98,11 @@ export default function CartButton() {
                           <div className="flow-root">
                             <ul
                               role="list"
-                              className="-my-6 divide-y divide-gray-200"
+                              className="-my-6 divide-y divide-muted"
                             >
                               {data?.items?.map((item) => (
                                 <li key={item.id} className="flex py-6">
-                                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-muted">
                                     <Image
                                       src={
                                         item.product?.images?.[0]?.file?.url ||
