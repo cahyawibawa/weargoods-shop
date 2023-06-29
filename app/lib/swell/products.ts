@@ -1,14 +1,33 @@
 import swell from "@/lib/swell";
 
-export const getProducts = (input?: swell.ProductQuery & { search?: string }) =>
-  swell.products.list({
+export const getProducts = async (
+  input?: swell.ProductQuery & { search?: string }
+): Promise<{
+  results: (swell.Product & { categories: swell.Category[] })[];
+  total_pages: number;
+}> => {
+  const limit = input?.limit || 20;
+  const response = (await swell.products.list({
     ...input,
     expand: ["categories", "variants"],
-    page: input?.page || 1,
-    limit: input?.limit || 20,
-  }) as Promise<
-    swell.ResultsResponse<swell.Product & { categories: swell.Category[] }>
+    limit,
+  })) as swell.ResultsResponse<
+    swell.Product & { categories: swell.Category[] }
   >;
+
+  const results = response.results.map((product) => ({
+    ...product,
+    categories: product.categories as swell.Category[],
+  }));
+
+  const totalCount = response.count;
+  const totalPages = Math.ceil(totalCount / limit);
+
+  return {
+    results,
+    total_pages: totalPages,
+  };
+};
 
 export const getProductsByCategorySlug = (slug: string) =>
   swell.products.list({
