@@ -1,7 +1,28 @@
 import swell from "@/lib/swell";
-import { ResultsResponse } from "swell";
-import { Category } from "swell-js/types/category";
-import { Product } from "swell-js/types/product";
+
+type Product = {
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  currency: string;
+};
+
+type Image = {
+  caption: string;
+  file: {
+    url: string;
+    width: number;
+    height: number;
+  };
+};
+
+type Category = {
+  name: string;
+  slug: string;
+  products: Product[];
+  images: Image[];
+};
 
 export const getProductFilters = (
   products: ResultsResponse<Product & { categories: Category[] }>
@@ -32,3 +53,4 @@ export const getProductFilters = (
     }[]
   >;
 };
+export { ResultsResponse };
