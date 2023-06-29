@@ -38,12 +38,12 @@ export default function AuthenticationPage() {
         <Card>
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl">Sign Up</CardTitle>
-            <CardDescription>
+            {/* <CardDescription>
               Choose your preferred sign up method
-            </CardDescription>
+            </CardDescription> */}
           </CardHeader>
           <CardContent className="grid gap-4">
-            <OAuthSignIn />
+            {/* <OAuthSignIn /> */}
             <SignUpForm />
           </CardContent>
           <CardFooter className="flex flex-wrap items-center space-x-2">

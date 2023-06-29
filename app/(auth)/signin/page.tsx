@@ -38,13 +38,13 @@ export default function AuthenticationPage() {
         <Card>
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl">Sign in</CardTitle>
-            <CardDescription>
+            {/* <CardDescription>
               Choose your preferred sign in method
-            </CardDescription>
+            </CardDescription> */}
           </CardHeader>
           <CardContent className="grid gap-4">
-            <OAuthSignIn />
-            <div className="relative">
+            {/* <OAuthSignIn /> */}
+            {/* <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />
               </div>
@@ -53,7 +53,7 @@ export default function AuthenticationPage() {
                   Or continue with
                 </span>
               </div>
-            </div>
+            </div> */}
             <SignInForm />
           </CardContent>
           <CardFooter className="flex flex-wrap items-center space-x-2">
