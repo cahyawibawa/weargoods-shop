@@ -2,6 +2,7 @@
 
 import { InputWithButton } from "@/components/Subscribe";
 import { ModeToggle } from "@/components/ToggleMode";
+import { siteConfig } from "@/config/site";
 export default function Footer() {
   return (
     <footer aria-label="Site Footer">
@@ -36,9 +37,7 @@ export default function Footer() {
           </div>
 
           <div className="text-center sm:text-left">
-            <p className="text-lg font-medium text-gray-900 dark:text-white">
-              Information
-            </p>
+            <p className="text-lg font-medium text-foreground">Information</p>
 
             <nav aria-label="Footer Services Nav" className="mt-8">
               <ul className="space-y-4 text-sm">
@@ -64,7 +63,7 @@ export default function Footer() {
           </div>
 
           <div className="text-center sm:text-left">
-            <p className="text-lg font-medium text-gray-900 dark:text-white">
+            <p className="text-lg font-medium text-foreground">
               Helpfull Links
             </p>
 
@@ -108,9 +107,7 @@ export default function Footer() {
           </div>
 
           <div className="text-center sm:text-left">
-            <p className="text-lg font-medium text-gray-900 dark:text-white">
-              Legal
-            </p>
+            <p className="text-lg font-medium text-foreground">Legal</p>
 
             <nav aria-label="Footer Helpful Nav" className="mt-8">
               <ul className="space-y-4 text-sm">
@@ -136,9 +133,7 @@ export default function Footer() {
           </div>
 
           <div className="text-center sm:text-left md:col-span-4 lg:col-span-2">
-            <p className="text-lg font-medium text-gray-900 dark:text-white">
-              Stay in Touch
-            </p>
+            <p className="text-lg font-medium text-foreground">Stay in Touch</p>
 
             <div className="mx-auto mt-8 max-w-md sm:ms-0">
               <p className="pb-6 text-muted-foreground text-sm">
@@ -151,8 +146,8 @@ export default function Footer() {
 
         <div className="mt-16 border-t border-gray-100 pt-6 dark:border-gray-800 sm:flex sm:items-center sm:justify-between">
           <p className="text-center text-sm text-muted-foreground  sm:text-left">
-            Copyright &copy; {new Date().getFullYear()}{" "}
-            {process.env.NEXT_PUBLIC_SITE_NAME}. All rights reserved.
+            Copyright &copy; {new Date().getFullYear()} {siteConfig.name}. All
+            rights reserved.
           </p>
           {/* 
           <ul className="mt-4 flex justify-center gap-6 sm:mt-0 sm:justify-start">
