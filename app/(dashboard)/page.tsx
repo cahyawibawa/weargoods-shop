@@ -3,6 +3,7 @@ import Pagination from "../components/Pagination";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/products/ProductCard";
 import { getProducts } from "../lib/swell/products";
+import Banner from "@/components/Banner";
 
 export const revalidate = 1800;
 
@@ -32,6 +33,10 @@ export default function Home() {
 
   return (
     <>
+      <Banner />
+      <h2 className="text-2xl font-bold text-foreground mt-3">
+        Featured Products
+      </h2>
       <div className="mt-4 grid grid-cols-1 rounded-md border-l border-t border-input sm:grid-cols-2 md:mt-8 md:grid-cols-3 lg:mt-12 lg:grid-cols-4 xl:grid-cols-5">
         {isLoading
           ? [...Array(20)].map((_, index) => (
