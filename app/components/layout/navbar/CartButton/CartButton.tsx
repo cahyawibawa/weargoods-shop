@@ -10,6 +10,7 @@ import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { Icons } from "@/components/Icons";
 export default function CartButton() {
   const opened = useMenu((state) => state.cart);
   const open = useMenu((state) => state.open);
@@ -34,10 +35,10 @@ export default function CartButton() {
             size: "sm",
             variant: "outline",
           }),
-          "w-9 px-0 group"
+          "h-9 w-9 p-0 group"
         )}
       >
-        <ShoppingBag aria-hidden="true" />
+        <Icons.shoppingBag aria-hidden="true" className="h-4 w-4" />
         {counter > 0 && (
           <span className="absolute top-5 right-1 flex items-center justify-center w-4 h-4 bg-blue-500 text-xs text-foreground rounded-full">
             {counter}

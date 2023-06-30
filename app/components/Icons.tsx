@@ -26,6 +26,8 @@ import {
   X,
   FileTerminal,
   LogOut,
+  Search,
+  ShoppingBag,
   type Icon as LucideIcon,
 } from "lucide-react";
 
@@ -47,6 +49,8 @@ export const Icons = {
       />
     </svg>
   ),
+  shoppingBag: ShoppingBag,
+  search: Search,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,

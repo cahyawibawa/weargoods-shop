@@ -196,10 +196,10 @@ export default function Navbar({ categories }: Props) {
                             size: "sm",
                             variant: "outline",
                           }),
-                          "w-9 px-0"
+                          "h-9 w-9 p-0"
                         )}
                       >
-                        <User aria-hidden="true" />
+                        <Icons.user aria-hidden="true" className="h-4 w-4" />
                       </div>
                     </Link>
                   )}

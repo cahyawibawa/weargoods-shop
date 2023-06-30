@@ -31,6 +31,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { getProducts } from "@/lib/swell/products";
 import { useTheme } from "next-themes";
+import { Icons } from "./Icons";
 
 export function CommandMenu({ ...props }: DialogProps) {
   const { setTheme } = useTheme();
@@ -68,16 +69,15 @@ export function CommandMenu({ ...props }: DialogProps) {
       <Button
         variant="outline"
         className={cn(
-          "text-muted-foreground relative h-9 w-full justify-start rounded-[0.5rem] text-sm sm:pr-12 md:w-40 lg:w-64"
+          "relative h-9 w-9 p-0 xl:h-9 xl:w-60 xl:justify-start xl:px-3 xl:py-2 sm:w-9"
         )}
         onClick={() => setOpen(true)}
         {...props}
       >
-        <span className="hidden lg:inline-flex">Search products...</span>
-        <span className="inline-flex lg:hidden">
-          <Search className="h-5 w-5 text-foreground" />
-        </span>
-        <kbd className="bg-muted pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <Icons.search className="h-4 w-4 xl:mr-2" aria-hidden="true" />
+        <span className="hidden xl:inline-flex">Search products...</span>
+        <span className="sr-only">Search products</span>
+        <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 xl:flex">
           <span className="text-xs">Ctrl</span>K
         </kbd>
       </Button>
@@ -117,7 +117,7 @@ export function CommandMenu({ ...props }: DialogProps) {
             <CommandItem>
               <PackagePlus className="mr-2 h-4 w-4" />
               <span>Sell item</span>
-              <CommandShortcut>⌘P</CommandShortcut>
+              {/* <CommandShortcut>⌘P</CommandShortcut> */}
             </CommandItem>
 
             {user ? (
