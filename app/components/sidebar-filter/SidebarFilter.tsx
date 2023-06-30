@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ChangeEvent } from "react";
 import { Fragment } from "react";
+import { Slider } from "@/components/ui/Slider";
 
 type Props = {
   filters: {
