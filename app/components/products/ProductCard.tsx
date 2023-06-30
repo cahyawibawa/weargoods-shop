@@ -25,8 +25,9 @@ export default function ProductCard({ product, isLoading = false }: Props) {
       <div className="group relative rounded-md border-b border-r border-input p-4 sm:p-6">
         <Skeleton className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75" />
         <div className="pb-4 pt-10 text-center">
-          <Skeleton className="h-4 w-[100%]" /> {/* Updated width to 100% */}
-          <Skeleton className="h-4 w-[100%]" /> {/* Updated width to 100% */}
+          <Skeleton className="h-4 w-3/4 mx-auto mb-4" />{" "}
+          {/* Adjusted width and added centering */}
+          <Skeleton className="h-4 w-1/2 mx-auto mb-6" />
         </div>
       </div>
     );
