@@ -33,16 +33,18 @@ export type Icon = LucideIcon;
 
 export const Icons = {
   logo: (props: LucideProps) => (
+    // rome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
     <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
+      width="23"
+      height="19"
+      viewBox="0 0 23 19"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="12" cy="12" r="10"></circle>
+      <path
+        d="M14.4626 18.4334L22.5471 3.35012L20.7488 0.000432602L14.4606 11.7305L8.16531 0.00424163L6.36904 3.35502L14.4626 18.4334ZM8.09462 18.4353L10.601 13.7575L8.79763 10.4173L8.09259 11.7324L1.79731 0.00616923L0.00104398 3.35695L8.09462 18.4329L8.09462 18.4353Z"
+        fill="currentColor"
+      />
     </svg>
   ),
   close: X,

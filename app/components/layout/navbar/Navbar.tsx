@@ -15,6 +15,7 @@ import { User, PanelRightClose } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
+import { Icons } from "@/components/Icons";
 type Props = {
   categories: swell.Category[];
 };
@@ -129,20 +130,13 @@ export default function Navbar({ categories }: Props) {
                 onClick={handleOpen}
               >
                 <span className="sr-only">Open menu</span>
-                <PanelRightClose className="h-6 w-6" aria-hidden="true" />
+                <PanelRightClose className="h-5 w-5" aria-hidden="true" />
               </button>
 
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/">
                   <span className="sr-only">{siteConfig.name}</span>
-                  <Image
-                    priority
-                    className="mx-auto h-8 w-auto"
-                    src="/images/white-logo.png"
-                    alt=""
-                    width={30}
-                    height={30}
-                  />
+                  <Icons.logo className="h-6 w-6" />
                 </Link>
               </div>
               {/* Filter */}
