@@ -11,10 +11,14 @@ import { Button } from "@/components/ui/Button";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/Icons";
+import useUser from "@/hooks/useUser";
+import { useRouter } from "next/navigation";
+import Disclaimer from "@/components/Disclaimer";
 export default function CartButton() {
   const opened = useMenu((state) => state.cart);
   const open = useMenu((state) => state.open);
   const close = useMenu((state) => state.close);
+  const router = useRouter();
 
   const handleOpen = () => open("cart");
   const handleClose = () => close("cart");
@@ -23,6 +27,17 @@ export default function CartButton() {
   const { mutate } = useSWRConfig();
 
   const counter = data?.item_quantity || 0;
+  const { user, isLoading } = useUser();
+
+  const handleCheckout = () => {
+    if (user) {
+      // If the user is authenticated, proceed to the checkout directly
+      router.push(data?.checkout_url || "");
+    } else {
+      // If the user is not authenticated, redirect to the sign-in page first
+      router.push("/signin");
+    }
+  };
 
   return (
     <>
@@ -177,13 +192,22 @@ export default function CartButton() {
                         <p className="mt-0.5 text-sm text-gray-500">
                           Shipping and taxes calculated at checkout.
                         </p>
+                        <Disclaimer />
                         <div className="mt-6">
-                          <Link
-                            href={data?.checkout_url || ""}
-                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                          >
-                            Checkout
-                          </Link>
+                          {user ? (
+                            <Button
+                              onClick={handleCheckout}
+                              className="max-w-md w-full bg-indigo-500 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            >
+                              Checkout
+                            </Button>
+                          ) : (
+                            <Link href="/signin">
+                              <Button className="max-w-md w-full bg-indigo-500 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                                Sign in to Checkout
+                              </Button>
+                            </Link>
+                          )}
                         </div>
                         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                           <p>
