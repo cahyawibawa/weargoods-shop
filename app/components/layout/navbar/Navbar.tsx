@@ -73,6 +73,23 @@ export default function Navbar({ categories }: Props) {
                   </button>
                 </div>
 
+                <div className="mt-2 space-y-6 border-muted px-4 py-6">
+                  <div className="flow-root">
+                    <Link
+                      href="/shop"
+                      onClick={handleClose}
+                      className={cn(
+                        "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
+                        pathname?.startsWith("/shop")
+                          ? "text-foreground"
+                          : "text-foreground/60"
+                      )}
+                    >
+                      Shop
+                    </Link>
+                  </div>
+                </div>
+
                 {/* <div className="mt-2 space-y-6 border-muted px-4 py-6">
                   {categories.map((category) => (
                     <div key={category.id} className="flow-root">
