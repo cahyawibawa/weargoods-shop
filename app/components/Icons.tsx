@@ -28,6 +28,7 @@ import {
   LogOut,
   Search,
   ShoppingBag,
+  ChevronDown,
   type Icon as LucideIcon,
 } from "lucide-react";
 
@@ -55,6 +56,7 @@ export const Icons = {
   spinner: Loader2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
+  chevronDown: ChevronDown,
   trash: Trash,
   post: FileText,
   page: File,
