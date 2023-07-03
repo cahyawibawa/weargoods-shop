@@ -14,6 +14,7 @@ import { SignInForm } from "@/components/form/SignInForm";
 import { Shell } from "@/components/Shell";
 import { buttonVariants } from "@/components/ui/Button";
 import { Icons } from "@/components/Icons";
+
 export const metadata: Metadata = {
   title: "Sign In",
   description: "Sign in to your Weargoods account.",
@@ -38,6 +39,7 @@ export default function AuthenticationPage() {
         <Card>
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl">Sign in</CardTitle>
+
             {/* <CardDescription>
               Choose your preferred sign in method
             </CardDescription> */}

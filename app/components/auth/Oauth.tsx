@@ -11,7 +11,7 @@ import { Icons } from "@/components/Icons";
 const oauthProviders = [
   { name: "Google", strategy: "oauth_google", icon: "google" },
   { name: "Facebook", strategy: "oauth_facebook", icon: "facebook" },
-  { name: "Discord", strategy: "oauth_discord", icon: "discord" },
+  { name: "Github", strategy: "oauth_github", icon: "gitHub" },
 ] satisfies {
   name: string;
   icon: keyof typeof Icons;
