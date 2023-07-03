@@ -1,41 +1,37 @@
-"use client";
-
 import { Separator } from "@/components/ui/Separator";
 import { SidebarNav } from "@/components/SideBarNav";
-
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { getCategories } from "@/lib/swell/categories";
+import { ScrollArea } from "@/components/ui/ScrollArea";
 const sidebarNavItems = [
-	{
-		title: "Account",
-		href: "/user-account",
-	},
-	{
-		title: "Profile",
-		href: "/profile",
-	},
+  {
+    title: "Account",
+    href: "/user-account",
+  },
 ];
 
 interface SettingsLayoutProps {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
-export default function SettingsLayout({ children }: SettingsLayoutProps) {
-	return (
-		<>
-			<div className="hidden space-y-6 p-10 pb-16 md:block">
-				<div className="space-y-0.5">
-					<h2 className="text-2xl font-bold tracking-tight">Settings</h2>
-					<p className="text-muted-foreground">
-						Manage your account settings and set e-mail preferences.
-					</p>
-				</div>
-				<Separator className="my-6" />
-				<div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
-					<aside className="-mx-4 lg:w-1/5">
-						<SidebarNav items={sidebarNavItems} />
-					</aside>
-					<div className="flex-1 lg:max-w-2xl">{children}</div>
-				</div>
-			</div>
-		</>
-	);
+export default async function SettingsLayout({
+  children,
+}: SettingsLayoutProps) {
+  const data = await getCategories();
+  return (
+    <div className="mx-auto flex h-full max-w-7xl flex-col px-4 sm:px-6 lg:px-8">
+      <Navbar categories={data.results} />
+      {/* <Separator className="my-6" /> */}
+      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+        <aside className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block">
+          <ScrollArea className="py-6 pr-6 lg:py-8">
+            <SidebarNav items={sidebarNavItems} />
+          </ScrollArea>
+        </aside>
+        <div className="flex-1 lg:max-w-2xl">{children}</div>
+      </div>
+      <Footer />
+    </div>
+  );
 }

@@ -1,17 +1,23 @@
 import { Separator } from "@/components/ui/Separator";
-import { AccountForm } from "./AccountForm";
-
-export default function SettingsProfilePage() {
-	return (
-		<div className="space-y-6">
-			<div>
-				<h3 className="text-lg font-medium">Account</h3>
-				<p className="text-sm text-muted-foreground">
-					This is how others will see you on the site.
-				</p>
-			</div>
-			<Separator />
-			<AccountForm />
-		</div>
-	);
+import { AccountForm } from "../../components/form/AccountForm";
+import type { Metadata } from "next";
+import { Shell } from "@/components/Shell";
+import { Header } from "@/components/Header";
+export const metadata: Metadata = {
+  title: "Account",
+  description: "Manage your account settings",
+};
+export default function AccountProfilePage() {
+  return (
+    <Shell layout="dashboard">
+      <Header
+        title="Account"
+        description="Manage your account settings."
+        size="sm"
+      />
+      <div className="w-full overflow-hidden rounded-lg">
+        <AccountForm />
+      </div>
+    </Shell>
+  );
 }
