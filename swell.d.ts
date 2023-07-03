@@ -1,5 +1,14 @@
 import swell from "@/lib/swell";
-
+interface FilterParams {
+  minPrice?: number;
+  maxPrice?: number;
+  maxProducts?: number;
+  category?: string;
+  slug?: string;
+  page?: number;
+  sort?: string;
+  search?: string;
+}
 type Product = {
   id: string;
   name: string;
