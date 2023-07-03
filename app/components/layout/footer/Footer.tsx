@@ -9,9 +9,7 @@ export default function Footer() {
       <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-0 sm:px-6 lg:px-0">
         <div className=" grid grid-cols-1 gap-8 border-t border-input pt-12 md:grid-cols-4 lg:grid-cols-6">
           <div className="text-center sm:text-left">
-            <p className="text-lg font-medium text-gray-900 dark:text-white">
-              About Us
-            </p>
+            <p className="text-lg font-medium text-foreground">About Us</p>
 
             <nav aria-label="Footer About Nav" className="mt-8">
               <ul className="space-y-4 text-sm">

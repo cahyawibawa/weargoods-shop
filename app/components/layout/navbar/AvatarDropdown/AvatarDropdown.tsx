@@ -88,7 +88,7 @@ export default function AvatarDropdown() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link href="/profile">
+                <Link href="/user-account">
                   <Icons.user className="mr-2 h-4 w-4" aria-hidden="true" />
                   Account
                   <DropdownMenuShortcut>⇧⌘A</DropdownMenuShortcut>
