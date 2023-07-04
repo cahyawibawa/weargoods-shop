@@ -29,6 +29,7 @@ import {
   Search,
   ShoppingBag,
   ChevronDown,
+  ScrollText,
   type Icon as LucideIcon,
 } from "lucide-react";
 
@@ -50,6 +51,7 @@ export const Icons = {
       />
     </svg>
   ),
+  scrollText: ScrollText,
   shoppingBag: ShoppingBag,
   search: Search,
   close: X,
