@@ -1,15 +1,17 @@
-import { Separator } from "@/components/ui/Separator";
-
-export default function DashboardPage() {
+import type { Metadata } from "next";
+import { Shell } from "@/components/Shell";
+import { Header } from "@/components/Header";
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "Sell your items",
+};
+export default function AccountProfilePage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-medium">Dashboard</h3>
-        <p className="text-sm text-muted-foreground">
-          This is how others will see you on the site.
-        </p>
+    <Shell layout="dashboard">
+      <Header title="Dashboard" description="Consign your items" size="sm" />
+      <div className="w-full overflow-hidden rounded-lg">
+        {/* <AccountForm /> */}
       </div>
-      <Separator />
-    </div>
+    </Shell>
   );
 }
