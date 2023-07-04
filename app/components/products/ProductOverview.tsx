@@ -12,7 +12,7 @@ import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ProductOptions from "./ProductOptions";
 type Props = {
-  product: SwellProduct & { categories: swell.Category[] };
+  product: swell.Product & { categories: swell.Category[] };
 };
 
 export default function ProductOverview({ product }: Props) {
