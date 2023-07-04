@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/Button";
+import { Icons } from "./Icons";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -32,10 +33,19 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
             buttonVariants({ variant: "ghost" }),
             pathname === item.href
               ? "bg-muted hover:bg-muted"
-              : "hover:bg-transparent hover:underline",
+              : "hover:bg-muted hover:text-foreground",
             "justify-start"
           )}
         >
+          {item.title === "Account" && (
+            <Icons.user className="mr-2 h-4 w-4" aria-hidden="true" /> // Use the appropriate icon component from the Icons component
+          )}
+          {item.title === "Dashboard" && (
+            <Icons.terminal className="mr-2 h-4 w-4" aria-hidden="true" /> // Use the appropriate icon component from the Icons component
+          )}
+          {item.title === "Orders" && (
+            <Icons.scrollText className="mr-2 h-4 w-4" aria-hidden="true" /> // Use the appropriate icon component from the Icons component
+          )}
           {item.title}
         </Link>
       ))}
