@@ -1,5 +1,4 @@
 "use client";
-
 import { CommandMenu } from "@/components/CommandMenu";
 import { AvatarDropdown } from "@/components/layout/navbar/AvatarDropdown";
 import useMenu from "@/hooks/useMenu";
@@ -7,7 +6,6 @@ import useUser from "@/hooks/useUser";
 import { usePathname } from "next/navigation";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { CartButton } from "./CartButton";
@@ -16,19 +14,21 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/Icons";
+import { useRouter } from "next/navigation";
+
 type Props = {
   categories: swell.Category[];
+  query: FilterParams;
 };
 
 export default function Navbar({ categories }: Props) {
   const opened = useMenu((state) => state.header);
   const open = useMenu((state) => state.open);
   const close = useMenu((state) => state.close);
-
+  const router = useRouter();
   const handleOpen = () => open("header");
   const handleClose = () => close("header");
   const pathname = usePathname();
-
   const { user, isLoading } = useUser();
 
   return (
@@ -73,7 +73,7 @@ export default function Navbar({ categories }: Props) {
                   </button>
                 </div>
 
-                <div className="mt-2 space-y-6 border-muted px-4 py-6">
+                {/* <div className="mt-2 space-y-6 border-muted px-4 py-6">
                   <div className="flow-root">
                     <Link
                       href="/shop"
@@ -88,9 +88,9 @@ export default function Navbar({ categories }: Props) {
                       Shop
                     </Link>
                   </div>
-                </div>
+                </div> */}
 
-                {/* <div className="mt-2 space-y-6 border-muted px-4 py-6">
+                <div className="mt-2 space-y-6 border-muted px-4 py-6">
                   {categories.map((category) => (
                     <div key={category.id} className="flow-root">
                       <Link
@@ -107,7 +107,7 @@ export default function Navbar({ categories }: Props) {
                       </Link>
                     </div>
                   ))}
-                </div> */}
+                </div>
 
                 {!isLoading && !user && (
                   <div className="space-y-6 border-t border-muted px-4 py-6">
@@ -115,7 +115,12 @@ export default function Navbar({ categories }: Props) {
                       <Link
                         href="/signin"
                         onClick={handleClose}
-                        className="-m-2 block p-2 font-medium text-muted-foreground"
+                        className={cn(
+                          "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
+                          pathname?.startsWith("/signin")
+                            ? "text-foreground"
+                            : "text-foreground/60"
+                        )}
                       >
                         Sign in
                       </Link>
@@ -124,7 +129,12 @@ export default function Navbar({ categories }: Props) {
                       <Link
                         href="/signup"
                         onClick={handleClose}
-                        className="-m-2 block p-2 font-medium text-muted-foreground"
+                        className={cn(
+                          "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
+                          pathname?.startsWith("/signup")
+                            ? "text-foreground"
+                            : "text-foreground/60"
+                        )}
                       >
                         Create account
                       </Link>
@@ -160,10 +170,10 @@ export default function Navbar({ categories }: Props) {
               <div className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   <Link
-                    href="/filter"
+                    href="/shop"
                     className={cn(
                       "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
-                      pathname?.startsWith("/filter")
+                      pathname?.startsWith("/shop")
                         ? "text-foreground"
                         : "text-foreground/60"
                     )}
@@ -175,7 +185,7 @@ export default function Navbar({ categories }: Props) {
 
               {/* Categories */}
 
-              {/* <div className="hidden lg:ml-8 lg:block lg:self-stretch">
+              <div className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {categories.map((category) => (
                     <Link
@@ -192,7 +202,7 @@ export default function Navbar({ categories }: Props) {
                     </Link>
                   ))}
                 </div>
-              </div> */}
+              </div>
 
               <div className="ml-auto flex items-center space-x-1 ">
                 <div className="w-full flex-1 md:w-auto md:flex-none">
