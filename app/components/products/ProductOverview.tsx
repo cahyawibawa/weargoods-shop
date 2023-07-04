@@ -10,11 +10,13 @@ import { useState, useTransition, useEffect } from "react";
 import { Button } from "../ui/Button";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import ProductOptions from "./ProductOptions";
 type Props = {
-  product: swell.Product & { categories: swell.Category[] };
+  product: SwellProduct & { categories: swell.Category[] };
 };
 
 export default function ProductOverview({ product }: Props) {
+  const [chosenOptions, setChosenOptions] = useState({});
   const { mutate } = useSWRConfig();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -56,7 +58,7 @@ export default function ProductOverview({ product }: Props) {
               {product.images.map((image, index) => (
                 <Tab
                   key={image.id}
-                  className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+                  className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-foreground hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                 >
                   {({ selected }) => (
                     <>
@@ -72,8 +74,8 @@ export default function ProductOverview({ product }: Props) {
                       </span>
                       <span
                         className={classNames(
-                          selected ? "ring-indigo-500" : "ring-transparent",
-                          "pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2"
+                          selected ? "ring-foreground" : "ring-transparent",
+                          "pointer-events-none absolute inset-0 rounded-md ring-0 ring-offset-1"
                         )}
                         aria-hidden="true"
                       />
@@ -84,14 +86,14 @@ export default function ProductOverview({ product }: Props) {
             </Tab.List>
           </div>
 
-          <Tab.Panels className="aspect-h-6 aspect-w-4 w-full">
+          <Tab.Panels className="aspect-h-6 w-full">
             {product.images.map((image) => (
               <Tab.Panel key={image.id}>
                 <Image
                   // rome-ignore lint/style/noNonNullAssertion: <explanation>
                   src={image.file?.url!}
                   alt={image.caption || ""}
-                  className="h-full w-full bg-gray-200 object-cover object-center sm:rounded-lg"
+                  className="min-h-fit bg-gray-200 object-cover object-center sm:rounded-lg"
                   width={image.file?.width}
                   height={image.file?.height}
                 />
@@ -116,12 +118,6 @@ export default function ProductOverview({ product }: Props) {
             }).format(product.price || 0)}
           </p>
         </div>
-
-        {/* <p className="mt-1 text-sm italic text-gray-500">
-					{product.options
-						?.map((option) => `${option.name}: ${option.values}`)
-						.join(",  ")}
-				</p> */}
 
         {product.description && (
           <div className="mt-6">
