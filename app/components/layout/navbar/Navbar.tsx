@@ -18,7 +18,6 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   categories: swell.Category[];
-  query: FilterParams;
 };
 
 export default function Navbar({ categories }: Props) {
