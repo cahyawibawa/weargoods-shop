@@ -138,8 +138,9 @@ export function AccountForm({ account }: Props) {
               Use a permanent address where you can receive your purchases.
             </CardDescription>
           </CardHeader>
+
           <CardContent>
-            <div className="flex space-x-4">
+            <div className="flex flex-col lg:flex-row">
               <div className="flex-1 space-y-2 mb-2">
                 <Label htmlFor="country">Country</Label>
                 <Select
@@ -166,8 +167,8 @@ export function AccountForm({ account }: Props) {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="flex-1 space-y-2 mb-2">
-                <Label htmlFor="phone">Contact Phone</Label>
+              <div className="flex-1 space-y-2 mb-2 lg:mb-0">
+                <Label htmlFor="phone">Phone</Label>
                 <Input
                   type="tel"
                   id="phone"
@@ -190,6 +191,7 @@ export function AccountForm({ account }: Props) {
                 })}
               />
             </div>
+
             <div className="flex space-x-4">
               <div className="flex-1 space-y-2 mb-2">
                 <Label htmlFor="city">City</Label>
@@ -203,7 +205,7 @@ export function AccountForm({ account }: Props) {
                 />
               </div>
               <div className="flex-1 space-y-2 mb-2">
-                <Label htmlFor="state">State / Province</Label>
+                <Label htmlFor="state">Province</Label>
                 <Input
                   type="text"
                   id="state"
@@ -226,6 +228,7 @@ export function AccountForm({ account }: Props) {
               </div>
             </div>
           </CardContent>
+
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl">Notifications</CardTitle>
             <CardDescription>

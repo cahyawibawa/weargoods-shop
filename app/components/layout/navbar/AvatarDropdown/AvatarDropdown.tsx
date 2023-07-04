@@ -95,16 +95,19 @@ export default function AvatarDropdown() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="">
+                <Link href="/dashboard">
                   <Icons.terminal className="mr-2 h-4 w-4" aria-hidden="true" />
                   Dashboard
                   <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild disabled>
-                <Link href="">
-                  <Icons.settings className="mr-2 h-4 w-4" aria-hidden="true" />
-                  Settings
+              <DropdownMenuItem asChild>
+                <Link href="/orders">
+                  <Icons.scrollText
+                    className="mr-2 h-4 w-4"
+                    aria-hidden="true"
+                  />
+                  Orders
                   <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>
