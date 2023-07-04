@@ -1,6 +1,5 @@
 "use client";
 
-import { DialogProps } from "@radix-ui/react-alert-dialog";
 import * as React from "react";
 import { Button } from "@/components/ui/Button";
 import {
@@ -13,54 +12,73 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/Command";
-import {
-  CreditCard,
-  Settings,
-  ListFilter,
-  Shirt,
-  Search,
-  PackagePlus,
-  Circle,
-  File,
-  Laptop,
-  Moon,
-  SunMedium,
-} from "lucide-react";
+import { Settings, PackagePlus, Laptop, Moon, SunMedium } from "lucide-react";
 import useUser from "@/hooks/useUser";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { getProducts } from "@/lib/swell/products";
 import { useTheme } from "next-themes";
-import { Icons } from "./Icons";
+import { Icons } from "@/components/Icons";
+import { useDebounce } from "@/hooks/useDebounce";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { getProducts } from "@/lib/swell/products";
 
-export function CommandMenu({ ...props }: DialogProps) {
+export function CommandMenu() {
   const { setTheme } = useTheme();
-  const [open, setOpen] = React.useState(false);
-  const [search, setSearch] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState<swell.Product[]>([]);
+  const router = useRouter();
+  const [isOpen, setIsOpen] = React.useState(false);
   const { user, isLoading } = useUser();
-
-  const handleSearch = async () => {
-    const productsResponse = await getProducts({ search });
-    console.log(productsResponse);
-    const products = productsResponse.results;
-    setSearchResults(products);
-  };
+  const [query, setQuery] = React.useState("");
+  const debouncedQuery = useDebounce(query, 300);
+  const [data, setData] = React.useState<
+    | {
+        products: swell.Product[];
+        categories: swell.Category[];
+      }[]
+    | null
+  >(null);
+  const [isPending, startTransition] = React.useTransition();
 
   React.useEffect(() => {
-    const down = (e: KeyboardEvent) => {
+    if (debouncedQuery.length === 0) setData(null);
+
+    if (debouncedQuery.length > 0) {
+      startTransition(async () => {
+        const data = await getProducts({ search: debouncedQuery });
+        setData([
+          {
+            products: data.results,
+            categories: [], // Provide the appropriate categories here
+          },
+        ]);
+      });
+    }
+  }, [debouncedQuery]);
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((open) => !open);
+        setIsOpen((isOpen) => !isOpen);
       }
     };
-
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  const handleSelect = React.useCallback((callback: () => unknown) => {
+    setIsOpen(false);
+    callback();
+  }, []);
+
+  React.useEffect(() => {
+    if (!isOpen) {
+      setQuery("");
+    }
+  }, [isOpen]);
+
   const runCommand = React.useCallback((command: () => unknown) => {
-    setOpen(false);
+    setIsOpen(false);
     command();
   }, []);
 
@@ -71,8 +89,7 @@ export function CommandMenu({ ...props }: DialogProps) {
         className={cn(
           "relative h-9 w-9 p-0 xl:h-9 xl:w-60 xl:justify-start xl:px-3 xl:py-2 sm:w-9"
         )}
-        onClick={() => setOpen(true)}
-        {...props}
+        onClick={() => setIsOpen(true)}
       >
         <Icons.search className="h-4 w-4 xl:mr-2" aria-hidden="true" />
         <span className="hidden xl:inline-flex">Search products...</span>
@@ -81,46 +98,53 @@ export function CommandMenu({ ...props }: DialogProps) {
           <span className="text-xs">Ctrl</span>K
         </kbd>
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={isOpen} onOpenChange={setIsOpen}>
         <CommandInput
-          value={search}
-          onValueChange={setSearch}
           placeholder="Type a command or search..."
-          onSubmit={handleSearch}
+          value={query}
+          onValueChange={setQuery}
         />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          {/* <CommandGroup heading="Suggestions">
-            <CommandList>
-              {searchResults.map((product) => (
-                <CommandItem key={product.id}>
-                  <span>{product.name}</span>
-                </CommandItem>
-              ))}
-            </CommandList>
-
-            <Link href="/clothes">
-              <CommandItem>
-                <Shirt className="mr-2 h-4 w-4" />
-                <span>Clothing</span>
-              </CommandItem>
-            </Link>
-            <CommandItem>
-              <ListFilter className="mr-2 h-4 w-4" />
-              <span>Filter Products</span>
-              <CommandShortcut>⌘F</CommandShortcut>
-            </CommandItem>
-          </CommandGroup> */}
-
+          <CommandEmpty
+            className={cn(isPending ? "hidden" : "py-6 text-center text-sm")}
+          >
+            No products found.
+          </CommandEmpty>
+          {isPending ? (
+            <div className="space-y-1 overflow-hidden px-1 py-2">
+              <Skeleton className="h-4 w-10 rounded" />
+              <Skeleton className="h-8 rounded-sm" />
+              <Skeleton className="h-8 rounded-sm" />
+            </div>
+          ) : (
+            data?.map((group) => (
+              <CommandGroup
+                key={group.products[0]?.name}
+                className="capitalize"
+              >
+                {group.products.map((product) => (
+                  <CommandItem
+                    key={product.id}
+                    onSelect={() =>
+                      handleSelect(() =>
+                        router.push(`/product/${product.slug}`)
+                      )
+                    }
+                  >
+                    {product.name}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ))
+          )}
           <CommandSeparator />
           <CommandGroup heading="Command">
             <CommandItem>
               <PackagePlus className="mr-2 h-4 w-4" />
               <span>Sell item</span>
-              {/* <CommandShortcut>⌘P</CommandShortcut> */}
             </CommandItem>
 
-            {user ? (
+            {/* {user && (
               <Link href="/user-account">
                 <CommandItem>
                   <Settings className="mr-2 h-4 w-4" />
@@ -128,7 +152,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                   <CommandShortcut>⌘S</CommandShortcut>
                 </CommandItem>
               </Link>
-            ) : null}
+            )} */}
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Theme">
