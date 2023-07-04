@@ -71,7 +71,7 @@ export default function Filter({ searchParams }: Props) {
       },
     });
     if (products.results.length === 0) {
-      redirect("/filter");
+      redirect("/shop");
     }
     const filters = await getProductFilters(products.results);
     setFilters(filters);
