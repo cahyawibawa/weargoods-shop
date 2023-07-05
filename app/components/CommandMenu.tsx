@@ -12,7 +12,14 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/Command";
-import { Settings, PackagePlus, Laptop, Moon, SunMedium } from "lucide-react";
+import {
+  Settings,
+  PackagePlus,
+  Laptop,
+  Moon,
+  SunMedium,
+  Store,
+} from "lucide-react";
 import useUser from "@/hooks/useUser";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -139,20 +146,19 @@ export function CommandMenu() {
           )}
           <CommandSeparator />
           <CommandGroup heading="Command">
-            <CommandItem>
-              <PackagePlus className="mr-2 h-4 w-4" />
-              <span>Sell item</span>
-            </CommandItem>
+            <Link href={user ? "/dashboard" : "/signin"}>
+              <CommandItem>
+                <PackagePlus className="mr-2 h-4 w-4" />
+                <span>Sell item</span>
+              </CommandItem>
+            </Link>
 
-            {/* {user && (
-              <Link href="/user-account">
-                <CommandItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                  <CommandShortcut>⌘S</CommandShortcut>
-                </CommandItem>
-              </Link>
-            )} */}
+            <Link href="/shop">
+              <CommandItem>
+                <Store className="mr-2 h-4 w-4" />
+                <span>Shop</span>
+              </CommandItem>
+            </Link>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Theme">
