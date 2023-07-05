@@ -1,4 +1,5 @@
 "use client";
+import * as React from "react";
 import { CommandMenu } from "@/components/CommandMenu";
 import { AvatarDropdown } from "@/components/layout/navbar/AvatarDropdown";
 import useMenu from "@/hooks/useMenu";
@@ -14,6 +15,24 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/Icons";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/NavigationMenu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/Accordion";
+import { navigationMenuTriggerStyle } from "@/components/ui/NavigationMenu";
+
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -64,7 +83,7 @@ export default function Navbar({ categories }: Props) {
                 <div className="flex px-4 pb-2 pt-5">
                   <button
                     type="button"
-                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-foreground"
                     onClick={handleClose}
                   >
                     <span className="sr-only">Close menu</span>
@@ -89,7 +108,31 @@ export default function Navbar({ categories }: Props) {
                   </div>
                 </div> */}
 
+                <div className="mt-2 px-5">
+                  <Link
+                    aria-label="Home"
+                    href="/"
+                    className="flex items-center"
+                    onClick={handleClose}
+                  >
+                    <Icons.logo className="mr-2 h-4 w-4" aria-hidden="true" />
+                    <span className="font-bold ml-2">{siteConfig.name}</span>
+                  </Link>
+                </div>
+
                 <div className="mt-2 space-y-6 border-muted px-4 py-6">
+                  <Link
+                    href="/shop"
+                    onClick={handleClose}
+                    className={cn(
+                      "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
+                      pathname === "/shop"
+                        ? "text-foreground"
+                        : "text-foreground/60"
+                    )}
+                  >
+                    Shop
+                  </Link>
                   {categories.map((category) => (
                     <div key={category.id} className="flow-root">
                       <Link
@@ -146,7 +189,7 @@ export default function Navbar({ categories }: Props) {
         </Dialog>
       </Transition.Root>
 
-      <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 bg-background/95 backdrop-blur">
+      <header className="supports-backdrop-blur:bg-background/70 sticky top-0 z-40 bg-background backdrop-blur">
         <nav aria-label="Top">
           <div className="border-b border-input">
             <div className="flex h-16 items-center">
@@ -159,14 +202,55 @@ export default function Navbar({ categories }: Props) {
                 <PanelRightClose className="h-5 w-5" aria-hidden="true" />
               </button>
 
-              <div className="ml-4 flex lg:ml-0">
+              <div className="ml-4 lg:flex lg:ml-0 hidden" aria-hidden="true">
                 <Link href="/">
                   <span className="sr-only">{siteConfig.name}</span>
                   <Icons.logo className="h-6 w-6" />
                 </Link>
               </div>
               {/* Filter */}
-              <div className="hidden lg:ml-8 lg:block lg:self-stretch">
+              <div className="hidden lg:ml-5 lg:block lg:self-stretch">
+                <div className="flex h-full space-x-8">
+                  <NavigationMenu>
+                    <NavigationMenuList>
+                      <NavigationMenuItem>
+                        <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                          <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                            <li className="row-span-3">
+                              <NavigationMenuLink asChild>
+                                <a
+                                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                  href="/shop"
+                                >
+                                  <Icons.logo className="h-6 w-6" />
+                                  <div className="mb-2 mt-4 text-lg font-medium">
+                                    weargoods
+                                  </div>
+                                  <p className="text-sm leading-tight text-muted-foreground">
+                                    {siteConfig.description}
+                                  </p>
+                                </a>
+                              </NavigationMenuLink>
+                            </li>
+                            {categories.map((category) => (
+                              <ListItem
+                                key={category.id}
+                                href={`/${category.slug}`}
+                                title={category.name}
+                              >
+                                {category.description}
+                              </ListItem>
+                            ))}
+                          </ul>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
+                  </NavigationMenu>
+                </div>
+              </div>
+
+              {/* <div className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   <Link
                     href="/shop"
@@ -180,11 +264,11 @@ export default function Navbar({ categories }: Props) {
                     Shop
                   </Link>
                 </div>
-              </div>
+              </div> */}
 
               {/* Categories */}
 
-              <div className="hidden lg:ml-8 lg:block lg:self-stretch">
+              {/* <div className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {categories.map((category) => (
                     <Link
@@ -201,7 +285,7 @@ export default function Navbar({ categories }: Props) {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               <div className="ml-auto flex items-center space-x-1 ">
                 <div className="w-full flex-1 md:w-auto md:flex-none">
@@ -240,3 +324,29 @@ export default function Navbar({ categories }: Props) {
     </>
   );
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
