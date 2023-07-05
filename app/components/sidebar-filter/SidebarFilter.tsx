@@ -1,5 +1,4 @@
 "use client";
-
 import useMenu from "@/hooks/useMenu";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/20/solid";
@@ -8,6 +7,15 @@ import classNames from "classnames";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ChangeEvent } from "react";
 import { Fragment } from "react";
+import { Sorter } from "../Sorter";
+import { Input } from "../ui/Input";
+import { Slider } from "../ui/Slider";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/Accordion";
 
 type Props = {
   filters: {
@@ -194,44 +202,86 @@ export default function SidebarFilter({ filters }: Props) {
 
         <div className="hidden pb-2 lg:block">
           <form className="space-y-10 divide-y divide-foregound">
-            {filters
-              .filter((filter) => filter.type !== "range")
-              .map((section, sectionIdx) => (
-                <div
-                  key={section.id}
-                  className={sectionIdx === 0 ? undefined : "pt-10"}
-                >
-                  <fieldset>
-                    <legend className="block text-sm font-medium text-foreground">
-                      {section.label}
-                    </legend>
-                    <div className="space-y-3 pt-6">
-                      {section.options.map((option, optionIdx) => (
-                        <div key={option.value} className="flex items-center">
-                          <input
-                            id={`${section.id}-${optionIdx}`}
-                            name={`${section.id}[]`}
-                            defaultValue={option.value}
-                            defaultChecked={checkIfValueExists(
-                              section.id,
-                              option.value
-                            )}
-                            type="checkbox"
-                            onChange={(e) => handleFilterChange(e, section.id)}
-                            className="h-4 w-4 rounded border-input text-indigo-600 focus:ring-indigo-500"
-                          />
-                          <label
-                            htmlFor={`${section.id}-${optionIdx}`}
-                            className="ml-3 text-sm text-muted-foreground"
-                          >
-                            {option.label}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </fieldset>
-                </div>
-              ))}
+            <Accordion type="single" collapsible>
+              {filters
+                .filter((filter) => filter.type !== "range")
+                .map((section, sectionIdx) => (
+                  <AccordionItem
+                    key={section.id}
+                    value={`section-${sectionIdx}`}
+                  >
+                    <AccordionTrigger>{section.label}</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-3 pt-6">
+                        {section.options.map((option, optionIdx) => (
+                          <div key={option.value} className="flex items-center">
+                            <input
+                              id={`${section.id}-${optionIdx}`}
+                              name={`${section.id}[]`}
+                              defaultValue={option.value}
+                              defaultChecked={checkIfValueExists(
+                                section.id,
+                                option.value
+                              )}
+                              type="checkbox"
+                              onChange={(e) =>
+                                handleFilterChange(e, section.id)
+                              }
+                              className="h-4 w-4 rounded border-input text-indigo-600 focus:ring-indigo-500"
+                            />
+                            <label
+                              htmlFor={`${section.id}-${optionIdx}`}
+                              className="ml-3 text-sm text-muted-foreground"
+                            >
+                              {option.label}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+            </Accordion>
+            <Sorter />
+            {/* <div className="space-y-4">
+              <h3 className="text-sm font-medium tracking-wide text-foreground">
+                Price range ($)
+              </h3>
+              <Slider
+                defaultValue={[0, 500]}
+                max={500}
+                step={1}
+                value={priceRange}
+                onValueChange={handlePriceRangeChange}
+              />
+              <div className="flex items-center space-x-4">
+                <Input
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  max={priceRange[1]}
+                  className="h-9"
+                  value={priceRange[0]}
+                  onChange={(e) => {
+                    const value = Number(e.target.value);
+                    setPriceRange([value, priceRange[1]]);
+                  }}
+                />
+                <span className="text-muted-foreground">-</span>
+                <Input
+                  type="number"
+                  inputMode="numeric"
+                  min={priceRange[0]}
+                  max={500}
+                  className="h-9"
+                  value={priceRange[1]}
+                  onChange={(e) => {
+                    const value = Number(e.target.value);
+                    setPriceRange([priceRange[0], value]);
+                  }}
+                />
+              </div>
+            </div> */}
           </form>
         </div>
       </aside>
