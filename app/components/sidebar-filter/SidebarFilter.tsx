@@ -7,9 +7,7 @@ import classNames from "classnames";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ChangeEvent } from "react";
 import { Fragment } from "react";
-import { Sorter } from "../Sorter";
-import { Input } from "../ui/Input";
-import { Slider } from "../ui/Slider";
+import { Checkbox } from "@/components/ui/Checkbox";
 import {
   Accordion,
   AccordionContent,
@@ -242,46 +240,6 @@ export default function SidebarFilter({ filters }: Props) {
                   </AccordionItem>
                 ))}
             </Accordion>
-            <Sorter />
-            {/* <div className="space-y-4">
-              <h3 className="text-sm font-medium tracking-wide text-foreground">
-                Price range ($)
-              </h3>
-              <Slider
-                defaultValue={[0, 500]}
-                max={500}
-                step={1}
-                value={priceRange}
-                onValueChange={handlePriceRangeChange}
-              />
-              <div className="flex items-center space-x-4">
-                <Input
-                  type="number"
-                  inputMode="numeric"
-                  min={0}
-                  max={priceRange[1]}
-                  className="h-9"
-                  value={priceRange[0]}
-                  onChange={(e) => {
-                    const value = Number(e.target.value);
-                    setPriceRange([value, priceRange[1]]);
-                  }}
-                />
-                <span className="text-muted-foreground">-</span>
-                <Input
-                  type="number"
-                  inputMode="numeric"
-                  min={priceRange[0]}
-                  max={500}
-                  className="h-9"
-                  value={priceRange[1]}
-                  onChange={(e) => {
-                    const value = Number(e.target.value);
-                    setPriceRange([priceRange[0], value]);
-                  }}
-                />
-              </div>
-            </div> */}
           </form>
         </div>
       </aside>

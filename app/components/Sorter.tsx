@@ -27,12 +27,11 @@ const sortOptions: SortOptions[] = [
   { value: "Newest", sort: "date_created desc" },
 ];
 
-export function Sorter() {
+export function Sorter({ query }: { query: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = React.useTransition();
   const searchParams = useSearchParams().toString();
-  const query = new URLSearchParams(searchParams).get("sort") || "";
 
   // Create query string
   const createQueryString = React.useCallback(
