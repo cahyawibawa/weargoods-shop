@@ -27,8 +27,9 @@ interface SwellProductOption {
   }[];
   required: boolean;
   id: string;
+  label: string;
 }
-interface SwellVariant {
+interface SwellProductVariant {
   parent_id: string;
   name: string;
   active: boolean;
@@ -39,22 +40,34 @@ interface SwellVariant {
   sku?: string;
   id: string;
 }
+export interface CartOption {
+  name: string;
+  value: string;
+}
+
 interface SwellProduct extends swell.Product {
   dataCreated: string;
   images?: SwellProductImage[];
   options?: SwellProductOption[];
-  variants?: SwellVariant[];
+  variants?: SwellProductVariant[];
+  categories: swell.Category[];
   id: string;
 }
 
 export const getProducts = async (
-  input?: swell.ProductQuery & { search?: string }
+  input?: swell.ProductQuery & { search?: string } & FilterParams
 ): Promise<{
   results: (SwellProduct & { categories: swell.Category[] })[];
   total_pages: number;
 }> => {
   const limit = input?.limit || 20;
+
+  const { maxProducts, category, slug, page, sort, search } = input || {};
+
+  // Use the destructured variables as needed in your function
+
   const response = (await swell.products.list({
+    sort: sort,
     ...input,
     expand: ["categories", "variants"],
     limit,
