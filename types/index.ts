@@ -1,1 +1,9 @@
 export type UserRole = "user" | "admin" | "superadmin";
+export interface FooterItem {
+  title: string;
+  items: {
+    title: string;
+    href: string;
+    external?: boolean;
+  }[];
+}
