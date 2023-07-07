@@ -19,27 +19,6 @@ interface ProductProp {
   >;
 }
 
-interface SwellProduct {
-  variants?: SwellProductVariant[];
-  options?: SwellProductOption[];
-  categories: swell.Category[];
-}
-
-interface SwellProductVariant {
-  active: boolean;
-  name: string;
-  value_ids: string[];
-}
-
-interface SwellProductOption {
-  active: boolean;
-  label: string;
-  values: {
-    name: string;
-    id: string;
-  }[];
-}
-
 const ProductOptions = ({
   product,
   setChosenOptions,
@@ -76,7 +55,9 @@ const ProductOptions = ({
     if (availableProductsId.length === product.options?.length) {
       const selectedIdsSameAsActiveVariants = activeProductVariants?.map(
         (variant) =>
-          variant.value_ids.every((id) => availableProductsId.includes(id))
+          variant.value_ids.every((id: string) =>
+            availableProductsId.includes(id)
+          )
       );
       updateState({
         ...state,
