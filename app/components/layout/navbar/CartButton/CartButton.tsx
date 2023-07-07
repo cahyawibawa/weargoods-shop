@@ -154,6 +154,9 @@ export default function CartButton() {
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
                                       <p className="text-gray-500">
+                                        Variant: {item.variant?.name}
+                                      </p>
+                                      <p className="text-gray-500">
                                         Qty: {item.quantity}
                                       </p>
 

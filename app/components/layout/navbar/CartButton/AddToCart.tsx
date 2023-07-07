@@ -7,9 +7,12 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { addToCart } from "@/lib/swell/cart";
+import ProductOptions from "@/components/products/ProductOptions";
+import { CartOption } from "@/lib/swell/products";
 
 type Props = {
-  product: swell.Product & { categories: swell.Category[] };
+  product: SwellProduct & { categories: swell.Category[] };
+  chosenOptions: { [key: string]: string };
 };
 
 export function AddToCart({ product }: Props) {
@@ -22,7 +25,13 @@ export function AddToCart({ product }: Props) {
   const { toast } = useToast();
   const [toastMessage, setToastMessage] = useState("");
   const [quantity, setQuantity] = useState(1);
-
+  const [pleaseSelectAllOptions, setPleaseSelectAllOptions] = useState("");
+  useEffect(() => {
+    product.options?.length === Object.keys(chosenOptions).length;
+    product.options?.length === Object.keys(chosenOptions).length &&
+      setPleaseSelectAllOptions("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [Object.keys(chosenOptions).length]);
   useEffect(() => {
     if (!isMutating && toastMessage !== "") {
       toast({
@@ -37,7 +46,11 @@ export function AddToCart({ product }: Props) {
 
     await addToCart({
       product_id: product.id,
-      quantity: quantity, // Use the updated quantity value
+      quantity: quantity,
+      // options: Object.keys(chosenOptions).map((optionName) => ({
+      //   name: optionName,
+      //   value: chosenOptions[optionName],
+      // })) as CartOption[],
     });
 
     setLoading(false);
@@ -53,10 +66,17 @@ export function AddToCart({ product }: Props) {
   return (
     <form className="mb-8" onSubmit={handleSubmit}>
       <div className="mt-10 flex flex-col sm:flex-row">
+        <div className="mr-4">
+          <ProductOptions
+            product={product}
+            chosenOptions={chosenOptions}
+            setChosenOptions={setChosenOptions}
+          />
+        </div>
         <div className="flex items-center">
           <Input
             type="number"
-            min={0}
+            min={1}
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
             className="w-20 mr-2"

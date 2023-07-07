@@ -4,11 +4,13 @@ import { Tab } from "@headlessui/react";
 import classNames from "classnames";
 import Image from "next/image";
 import { AddToCart } from "../layout/navbar/CartButton/AddToCart";
+import { useState } from "react";
 type Props = {
-  product: swell.Product & { categories: swell.Category[] };
+  product: SwellProduct & { categories: swell.Category[] };
 };
 
 export default function ProductOverview({ product }: Props) {
+  const [chosenOptions, setChosenOptions] = useState({});
   return (
     <>
       <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:mb-12">
@@ -90,7 +92,7 @@ export default function ProductOverview({ product }: Props) {
               />
             </div>
           )}
-          <AddToCart product={product} />
+          <AddToCart product={product} chosenOptions={chosenOptions} />
         </div>
       </div>
     </>
