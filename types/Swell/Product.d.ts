@@ -55,6 +55,7 @@ interface SwellProductFile {
 }
 
 interface SwellProductOption {
+  label: string;
   name: string;
   variant: boolean;
   active: boolean;
