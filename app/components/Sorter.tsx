@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -11,6 +11,10 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Icons } from "@/components/Icons";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  useCreateQueryString,
+  useRemoveQueryString,
+} from "@/hooks/useQueryString";
 
 type SortOptions = {
   value: string;
@@ -27,44 +31,43 @@ const sortOptions: SortOptions[] = [
   { value: "Newest", sort: "date_created desc" },
 ];
 
-export function Sorter({ query }: { query: string }) {
+export function Sorter({ query }: { query: FilterParams }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [isPending, startTransition] = React.useTransition();
-  const searchParams = useSearchParams().toString();
+  const searchParams = useSearchParams();
+  const createQueryString = useCreateQueryString();
+  const removeQueryString = useRemoveQueryString();
 
-  // Create query string
-  const createQueryString = React.useCallback(
-    (params: Record<string, string | number | null>) => {
-      const newSearchParams = new URLSearchParams(searchParams);
-
-      for (const [key, value] of Object.entries(params)) {
-        if (value === null) {
-          newSearchParams.delete(key);
-        } else {
-          newSearchParams.set(key, String(value));
-        }
-      }
-
-      return newSearchParams.toString();
-    },
-    [searchParams]
+  const selectedQuery = query?.sort ?? "";
+  const selectedParam = sortOptions.find(
+    (param) => param.sort === selectedQuery
   );
 
-  const handleSortOptionClick = (option: SortOptions) => {
-    startTransition(() => {
-      router.push(
-        `${pathname}?${createQueryString({
-          sort: option.value,
-        })}`
-      );
-    });
+  const [selected, setSelected] = useState(selectedParam || sortOptions[0]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const isDefaultSort = selected.value === sortOptions[0].value;
+
+  /*****************************************************************************
+   * Handle sort changes
+   ****************************************************************************/
+  const handleFilter = (param: SortOptions) => {
+    setIsOpen(false);
+    setSelected(param);
+
+    const newSort =
+      param.value !== sortOptions[0].value ? param.sort : undefined;
+    const queryString = newSort
+      ? createQueryString("sort", newSort)
+      : removeQueryString("sort");
+
+    router.push(`${pathname}?${queryString}`);
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button aria-label="Sort products" size="sm" disabled={isPending}>
+        <Button aria-label="Sort products" size="sm">
           Sort
           <Icons.chevronDown className="ml-2 h-4 w-4" aria-hidden="true" />
         </Button>
@@ -75,8 +78,8 @@ export function Sorter({ query }: { query: string }) {
         {sortOptions.map((option) => (
           <DropdownMenuItem
             key={option.value}
-            className={cn(option.value === query && "font-bold")}
-            onClick={() => handleSortOptionClick(option)}
+            className={selected.sort === option.sort ? "font-bold" : ""}
+            onClick={() => handleFilter(option)}
           >
             {option.value}
           </DropdownMenuItem>

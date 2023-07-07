@@ -14,6 +14,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/Accordion";
+import { Sorter } from "../Sorter";
 
 type Props = {
   filters: {
@@ -27,8 +28,11 @@ type Props = {
     interval?: number;
   }[];
 };
+interface FilterProps {
+  query: FilterParams;
+}
 
-export default function SidebarFilter({ filters }: Props) {
+export default function SidebarFilter({ filters, query }: Props & FilterProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -225,7 +229,7 @@ export default function SidebarFilter({ filters }: Props) {
                               onChange={(e) =>
                                 handleFilterChange(e, section.id)
                               }
-                              className="h-4 w-4 rounded border-input text-indigo-600 focus:ring-indigo-500"
+                              className="h-4 w-4 rounded border-input text-indigo-600 focus:ring-indigo-500 ring-0"
                             />
                             <label
                               htmlFor={`${section.id}-${optionIdx}`}
@@ -240,6 +244,7 @@ export default function SidebarFilter({ filters }: Props) {
                   </AccordionItem>
                 ))}
             </Accordion>
+            <Sorter query={query} />
           </form>
         </div>
       </aside>
