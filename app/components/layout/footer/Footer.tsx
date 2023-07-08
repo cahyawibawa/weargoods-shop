@@ -1,8 +1,6 @@
 "use client";
 import Link from "next/link";
 import { type FooterItem } from "types";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/Button";
 import { Icons } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { SubscribeNewsletterForm } from "@/components/form/SubscribeNewsletterForm";
@@ -101,7 +99,7 @@ export default function Footer() {
               className="flex items-center space-x-2"
             >
               <Icons.logo className="h-6 w-6" aria-hidden="true" />
-              <span className="font-bold">{siteConfig.name}</span>
+              <span className="font-heading text-xl">{siteConfig.name}</span>
             </Link>
           </section>
           <section
@@ -138,6 +136,9 @@ export default function Footer() {
             <h4 className="text-base font-medium">
               Subscribe to our newsletter
             </h4>
+            <p className="text-sm text-muted-foreground">
+              Get top deals, latest trends, and more.
+            </p>
             <SubscribeNewsletterForm />
           </section>
         </section>
@@ -151,7 +152,7 @@ export default function Footer() {
             rights reserved.
           </div>
           <div className="flex items-center space-x-1">
-            <Link
+            {/* <Link
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
@@ -167,7 +168,7 @@ export default function Footer() {
                 <Icons.gitHub className="h-4 w-4" aria-hidden="true" />
                 <span className="sr-only">GitHub</span>
               </div>
-            </Link>
+            </Link> */}
             <ThemeToggle />
           </div>
         </section>
