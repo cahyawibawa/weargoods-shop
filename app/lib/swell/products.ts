@@ -60,7 +60,7 @@ export const getProducts = async (
   results: (SwellProduct & { categories: swell.Category[] })[];
   total_pages: number;
 }> => {
-  const limit = input?.limit || 20;
+  const limit = input?.limit || 15;
 
   const { maxProducts, category, slug, page, sort, search } = input || {};
 
