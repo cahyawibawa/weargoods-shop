@@ -31,6 +31,7 @@ import {
   ChevronDown,
   ScrollText,
   Send,
+  Store,
   type Icon as LucideIcon,
 } from "lucide-react";
 
@@ -52,6 +53,7 @@ export const Icons = {
       />
     </svg>
   ),
+  store: Store,
   send: Send,
   scrollText: ScrollText,
   shoppingBag: ShoppingBag,
