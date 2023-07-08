@@ -2,13 +2,12 @@ import { siteConfig } from "@/config/site";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { fontSans, fontMono } from "@/lib/fonts";
-import { getCategories } from "@/lib/swell/categories";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/Toaster";
 import { Analytics } from "@vercel/analytics/react";
 import "./styles/globals.css";
-
+import localFont from "next/font/local";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -61,12 +60,16 @@ export const metadata: Metadata = {
 
 export const revalidate = 1800;
 
+// Font files can be colocated inside of `pages`
+const fontHeading = localFont({
+  src: "assets/fonts/CalSans-SemiBold.woff2",
+  variable: "--font-heading",
+});
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const data = await getCategories();
   return (
     <>
       <ClerkProvider>
@@ -76,7 +79,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             className={cn(
               "min-h-screen bg-background font-sans antialiased",
               fontSans.variable,
-              fontMono.variable
+              fontMono.variable,
+              fontHeading.variable
             )}
           >
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
