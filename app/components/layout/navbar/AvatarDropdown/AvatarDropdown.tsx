@@ -88,21 +88,21 @@ export default function AvatarDropdown() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link href="/user-account">
+                <Link href="/dashboard/account">
                   <Icons.user className="mr-2 h-4 w-4" aria-hidden="true" />
                   Account
                   <DropdownMenuShortcut>⇧⌘A</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/dashboard">
+                <Link href="/dashboard/store">
                   <Icons.terminal className="mr-2 h-4 w-4" aria-hidden="true" />
                   Dashboard
                   <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/orders">
+                <Link href="/dashboard/orders">
                   <Icons.scrollText
                     className="mr-2 h-4 w-4"
                     aria-hidden="true"
