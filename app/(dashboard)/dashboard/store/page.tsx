@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { Shell } from "@/components/Shell";
 import { Header } from "@/components/Header";
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "Store",
   description: "Sell your items",
 };
-export default function AccountProfilePage() {
+export default function StorePage() {
   return (
-    <Shell layout="dashboard">
-      <Header title="Dashboard" description="Consign your items" size="sm" />
+    <Shell variant="sidebar">
+      <Header title="Store" description="Consign your items" size="sm" />
       <div className="w-full overflow-hidden rounded-lg">
         {/* <AccountForm /> */}
       </div>

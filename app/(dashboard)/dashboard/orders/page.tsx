@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Orders",
   description: "Track your order",
 };
-export default function AccountProfilePage() {
+export default function OrderPage() {
   return (
-    <Shell layout="dashboard">
+    <Shell variant="sidebar">
       <Header title="Orders" description="Track your order" size="sm" />
       <div className="w-full overflow-hidden rounded-lg">
         {/* <AccountForm /> */}
