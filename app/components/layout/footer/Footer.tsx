@@ -148,8 +148,7 @@ export default function Footer() {
           className="flex flex-col items-center justify-between space-y-1 md:flex-row"
         >
           <div className="text-center text-sm leading-loose text-muted-foreground">
-            Copyright &copy; {new Date().getFullYear()} {siteConfig.name}. All
-            rights reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.name}.
           </div>
           <div className="flex items-center space-x-1">
             {/* <Link
