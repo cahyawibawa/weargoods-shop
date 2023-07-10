@@ -28,8 +28,9 @@ type Props = {
     interval?: number;
   }[];
 };
+
 interface FilterProps {
-  query: FilterParams;
+  query?: FilterParams;
 }
 
 export default function SidebarFilter({ filters, query }: Props & FilterProps) {
@@ -244,7 +245,7 @@ export default function SidebarFilter({ filters, query }: Props & FilterProps) {
                   </AccordionItem>
                 ))}
             </Accordion>
-            <Sorter query={query} />
+            {/* <Sorter query={query} /> */}
           </form>
         </div>
       </aside>
