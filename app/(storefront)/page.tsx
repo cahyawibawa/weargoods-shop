@@ -8,10 +8,12 @@ import Balance, { Balancer } from "react-wrap-balancer";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import useUser from "@/hooks/useUser";
 import { Shell } from "@/components/Shell";
 export const revalidate = 1800;
 
 export default function Home() {
+  const { user } = useUser();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [productData, setProductData] = useState<
@@ -75,7 +77,7 @@ export default function Home() {
             Buy Now
           </Link>
           <Link
-            href="/dashboard/store"
+            href={user ? "/dashboard/store" : "/signin"}
             className={cn(
               buttonVariants({
                 variant: "outline",
