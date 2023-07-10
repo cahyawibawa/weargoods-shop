@@ -1,10 +1,3 @@
-interface SwellProductResponse {
-  results: SwellProduct[];
-  page: number;
-  count: number;
-  pages: { start: number; end: number }[];
-}
-
 interface SwellProduct {
   name: string;
   active: boolean;
@@ -67,33 +60,12 @@ interface SwellProductOption {
   id: string;
 }
 
-interface FilterParams {
-  minPrice?: number;
-  maxPrice?: number;
-  maxProducts?: number;
-  category?: string;
-  slug?: string;
-  page?: number;
-  sort?: string;
-  search?: string;
-}
-
-interface CategoryIndex {
-  id: string[];
-}
-
-interface SwellProductWhere {
-  price?: {
-    $gte?: number;
-    $lte?: number;
-  };
-}
-
 interface SwellVariants {
   count: number;
   results: SwellVariant[];
   page: number;
 }
+
 interface SwellVariant {
   parent_id: string;
   name: string;
@@ -104,4 +76,19 @@ interface SwellVariant {
   date_updated: string;
   sku?: string;
   id: string;
+}
+
+interface CategoryIndex {
+  id: string[];
+}
+
+interface FilterParams {
+  minPrice?: number;
+  maxPrice?: number;
+  maxProducts?: number;
+  category?: string;
+  slug?: string;
+  page?: number;
+  sort?: string;
+  search?: string;
 }

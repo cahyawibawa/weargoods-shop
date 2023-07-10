@@ -7,11 +7,9 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { addToCart } from "@/lib/swell/cart";
-import ProductOptions from "@/components/products/ProductOptions";
-import { CartOption } from "@/lib/swell/products";
 
 type Props = {
-  product: SwellProduct & { categories: swell.Category[] };
+  product: swell.Product & { categories: swell.Category[] };
   chosenOptions: { [key: string]: string };
 };
 
@@ -66,13 +64,13 @@ export function AddToCart({ product }: Props) {
   return (
     <form className="mb-8" onSubmit={handleSubmit}>
       <div className="mt-10 flex flex-col sm:flex-row">
-        <div className="mr-4">
+        {/* <div className="mr-4">
           <ProductOptions
             product={product}
             chosenOptions={chosenOptions}
             setChosenOptions={setChosenOptions}
           />
-        </div>
+        </div> */}
         <div className="flex items-center">
           <Input
             type="number"

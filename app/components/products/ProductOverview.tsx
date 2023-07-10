@@ -6,7 +6,7 @@ import Image from "next/image";
 import { AddToCart } from "../layout/navbar/CartButton/AddToCart";
 import { useState } from "react";
 type Props = {
-  product: SwellProduct & { categories: swell.Category[] };
+  product: swell.Product & { categories: swell.Category[] };
 };
 
 export default function ProductOverview({ product }: Props) {
