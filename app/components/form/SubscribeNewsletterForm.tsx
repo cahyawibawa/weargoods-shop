@@ -36,13 +36,13 @@ export function SubscribeNewsletterForm() {
     console.log(data);
 
     startTransition(async () => {
-      const response = await fetch("", {
+      const response = await fetch("/app/api/send", {
         method: "POST",
         body: JSON.stringify({
           email: data.email,
           // This token is used as a search param in the email preferences page to identify the subscriber.
           token: crypto.randomUUID(),
-          subject: "Welcome to Skateshop13",
+          subject: "Welcome to Weargoods",
         }),
       });
 
@@ -51,7 +51,7 @@ export function SubscribeNewsletterForm() {
       }
 
       if (response.status === 422) {
-        toast.error("Inavlid input.");
+        toast.error("Invalid input.");
       }
 
       if (response.status === 429) {
