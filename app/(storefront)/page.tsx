@@ -65,7 +65,7 @@ export default function Home() {
         </Balance>
         <div className="space-x-4">
           <Link
-            href="/products"
+            href="/shop"
             className={cn(
               buttonVariants({
                 size: "lg",
@@ -75,7 +75,7 @@ export default function Home() {
             Buy Now
           </Link>
           <Link
-            href="/dashboard/stores"
+            href="/dashboard/store"
             className={cn(
               buttonVariants({
                 variant: "outline",

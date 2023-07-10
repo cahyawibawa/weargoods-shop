@@ -1,5 +1,4 @@
 import { siteConfig } from "@/config/site";
-import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { fontSans, fontMono } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -72,25 +71,23 @@ interface RootLayoutProps {
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <ClerkProvider>
-        <html lang="en-US">
-          <head />
-          <body
-            className={cn(
-              "min-h-screen bg-background font-sans antialiased",
-              fontSans.variable,
-              fontMono.variable,
-              fontHeading.variable
-            )}
-          >
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              {children}
-              <Analytics />
-              <Toaster />
-            </ThemeProvider>
-          </body>
-        </html>
-      </ClerkProvider>
+      <html lang="en-US">
+        <head />
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable,
+            fontMono.variable,
+            fontHeading.variable
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+            <Analytics />
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </html>
     </>
   );
 }
