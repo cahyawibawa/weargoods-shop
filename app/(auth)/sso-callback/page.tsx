@@ -14,7 +14,7 @@ export default function SSOCallbackPage({
   searchParams,
 }: SSOCallbackPageProps) {
   return (
-    <Shell layout="auth">
+    <Shell className="max-w-xs">
       <SSOCallback searchParams={searchParams} />
     </Shell>
   );

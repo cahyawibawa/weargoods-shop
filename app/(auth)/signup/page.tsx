@@ -34,7 +34,7 @@ export default function AuthenticationPage() {
           Back
         </>
       </Link>
-      <Shell layout="auth">
+      <Shell className="max-w-lg">
         <Card>
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl">Sign Up</CardTitle>
