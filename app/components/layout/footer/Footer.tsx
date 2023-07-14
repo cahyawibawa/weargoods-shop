@@ -9,21 +9,6 @@ import { siteConfig } from "@/config/site";
 
 const footerItems: FooterItem[] = [
   {
-    title: "Credits",
-    items: [
-      {
-        title: "shadcn/ui",
-        href: "https://ui.shadcn.com/",
-        external: true,
-      },
-      {
-        title: "Skateshop",
-        href: "https://skateshop.sadmn.com/",
-        external: true,
-      },
-    ],
-  },
-  {
     title: "About",
     items: [
       {
@@ -31,8 +16,8 @@ const footerItems: FooterItem[] = [
         href: "/about",
       },
       {
-        title: "Environmental & Responsibility",
-        href: "/environment",
+        title: "Sustainability",
+        href: "/sustainability",
       },
     ],
   },
@@ -43,6 +28,15 @@ const footerItems: FooterItem[] = [
         title: "Contact",
         href: "/contact",
       },
+      {
+        title: "Size Guide",
+        href: "/sizeguide",
+      },
+    ],
+  },
+  {
+    title: "Legal",
+    items: [
       {
         title: "Terms",
         href: "/terms",
@@ -109,7 +103,7 @@ export default function Footer() {
           >
             {footerItems.map((item) => (
               <div key={item.title} className="space-y-3">
-                <h4 className="text-base font-medium">{item.title}</h4>
+                <h1 className="text-base font-medium">{item.title}</h1>
                 <ul className="space-y-3">
                   {item.items.map((link) => (
                     <li key={link.title}>

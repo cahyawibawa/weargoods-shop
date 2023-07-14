@@ -12,12 +12,12 @@ export const dashboardConfig: DashboardConfig = {
       icon: "user",
       items: [],
     },
-    {
-      title: "Stores",
-      href: "/dashboard/store",
-      icon: "store",
-      items: [],
-    },
+    // {
+    //   title: "Stores",
+    //   href: "/dashboard/store",
+    //   icon: "store",
+    //   items: [],
+    // },
     {
       title: "Orders",
       href: "/dashboard/orders",
