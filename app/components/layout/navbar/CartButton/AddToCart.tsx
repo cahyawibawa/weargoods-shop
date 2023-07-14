@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { addToCart } from "@/lib/swell/cart";
-import ProductOptions from "@/components/products/ProductOptions";
+
 type Props = {
   product: swell.Product & { categories: swell.Category[] };
   chosenOptions: { [key: string]: string };
