@@ -62,8 +62,8 @@ export default function Home() {
         </h1>
 
         <Balance className="max-w-[46rem] text-lg text-muted-foreground sm:text-xl">
-          &quot;Buy and sell your favorite products effortlessly with our
-          high-performance and user-friendly platform.&quot;
+          Buy your favorite products effortlessly with our high-performance and
+          user-friendly platform.
         </Balance>
         <div className="space-x-4">
           <Link
@@ -76,7 +76,7 @@ export default function Home() {
           >
             Buy Now
           </Link>
-          <Link
+          {/* <Link
             href={user ? "/dashboard/store" : "/signin"}
             className={cn(
               buttonVariants({
@@ -86,7 +86,7 @@ export default function Home() {
             )}
           >
             Sell Now
-          </Link>
+          </Link> */}
         </div>
       </section>
       <section>
