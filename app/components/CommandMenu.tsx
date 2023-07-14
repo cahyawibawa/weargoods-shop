@@ -146,12 +146,12 @@ export function CommandMenu() {
           )}
           <CommandSeparator />
           <CommandGroup heading="Command">
-            <Link href={user ? "/dashboard" : "/signin"}>
+            {/* <Link href={user ? "/dashboard" : "/signin"}>
               <CommandItem>
                 <PackagePlus className="mr-2 h-4 w-4" />
                 <span>Sell item</span>
               </CommandItem>
-            </Link>
+            </Link> */}
 
             <Link href="/shop">
               <CommandItem>

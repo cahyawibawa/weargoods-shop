@@ -309,7 +309,7 @@ export default function Navbar({ categories }: Props) {
                           "h-9 w-9 p-0"
                         )}
                       >
-                        <Icons.user aria-hidden="true" className="h-4 w-4" />
+                        <Icons.user className="h-4 w-4" />
                       </div>
                     </Link>
                   )}

@@ -94,7 +94,7 @@ export default function AvatarDropdown() {
                   <DropdownMenuShortcut>⇧⌘A</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
+              <DropdownMenuItem asChild disabled>
                 <Link href="/dashboard/store">
                   <Icons.terminal className="mr-2 h-4 w-4" aria-hidden="true" />
                   Dashboard
@@ -108,7 +108,7 @@ export default function AvatarDropdown() {
                     aria-hidden="true"
                   />
                   Orders
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                  <DropdownMenuShortcut>⌘O</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -117,7 +117,7 @@ export default function AvatarDropdown() {
               <Link href="" onClick={handleLogout}>
                 <Icons.logout className="mr-2 h-4 w-4" aria-hidden="true" />
                 {isPending ? "Logging out..." : "Log out"}
-                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                <DropdownMenuShortcut>⇧⌘L</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
