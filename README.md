@@ -2,7 +2,7 @@
 
 This is an open source e-commerce storefront build with everything new in Next.js 13 and Swell for API
 
-[![weargoods](./public/images/homepage.png)](https://weargoods-shop.vercel.app/)
+[![weargoods](./public/images/landingpage.png)](https://weargoods-shop.vercel.app/)
 
 ## Tech Stack
 
