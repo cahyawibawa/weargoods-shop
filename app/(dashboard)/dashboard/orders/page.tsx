@@ -8,7 +8,11 @@ export const metadata: Metadata = {
 export default function OrderPage() {
   return (
     <Shell variant="sidebar">
-      <Header title="Orders" description="Track your order" size="sm" />
+      <Header
+        title="Orders"
+        description="You haven&lsquo;t ordered anything yet."
+        size="sm"
+      />
       <div className="w-full overflow-hidden rounded-lg">
         {/* <AccountForm /> */}
       </div>
