@@ -10,9 +10,12 @@ import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import useUser from "@/hooks/useUser";
 import { Shell } from "@/components/Shell";
+import Image from "next/image";
+import { AspectRatio } from "@/components/ui/AspectRatio";
+import ProductCategories from "@/components/products/ProductCategories";
 export const revalidate = 1800;
 
-export default function Home() {
+export default function Home({ categories }: { categories: Category[] }) {
   const { user } = useUser();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -57,13 +60,13 @@ export default function Home() {
         ) : null} */}
         <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
           <Balancer>
-            An e-commerce storefront built with everything new in Next.js 13
+            An e-commerce storefront built with Next.js 13 and Swell
           </Balancer>
         </h1>
 
         <Balance className="max-w-[46rem] text-lg text-muted-foreground sm:text-xl">
-          Buy your favorite products effortlessly with our high-performance and
-          user-friendly platform.
+          Buy and sell your favorite products effortlessly with our
+          high-performance and user-friendly platform.
         </Balance>
         <div className="space-x-4">
           <Link
@@ -76,8 +79,8 @@ export default function Home() {
           >
             Buy Now
           </Link>
-          {/* <Link
-            href={user ? "/dashboard/store" : "/signin"}
+          <Link
+            href="https://www.swell.is/"
             className={cn(
               buttonVariants({
                 variant: "outline",
@@ -86,9 +89,10 @@ export default function Home() {
             )}
           >
             Sell Now
-          </Link> */}
+          </Link>
         </div>
       </section>
+      <ProductCategories categories={categories} />
       <section>
         <h2 className="font-heading text-2xl leading-[1.1]">
           Featured Products
@@ -117,6 +121,21 @@ export default function Home() {
           />
         </div>
       </section>
+      {/* <section
+        id="create-a-store-banner"
+        aria-labelledby="create-a-store-banner-heading"
+        className="grid place-items-center gap-6 rounded-lg border bg-card px-6 py-16 text-center text-card-foreground shadow-sm space-y-6"
+      >
+        <h2 className="text-2xl font-medium sm:text-3xl">
+          Do you want to sell your products on our website?
+        </h2>
+        <Link href="https://www.swell.is/">
+          <div className={cn(buttonVariants())}>
+            Create a store
+            <span className="sr-only">Create a store</span>
+          </div>
+        </Link>
+      </section> */}
     </>
   );
 }
