@@ -5,12 +5,24 @@ import classNames from "classnames";
 import Image from "next/image";
 import { AddToCart } from "../layout/navbar/CartButton/AddToCart";
 import { useState } from "react";
+
 type Props = {
   product: swell.Product & { categories: swell.Category[] };
 };
+type OptionType = {
+  optionName: string;
+  selectedValue: string;
+};
 
 export default function ProductOverview({ product }: Props) {
-  const [chosenOptions, setChosenOptions] = useState({});
+  const [chosenOptions, setChosenOptions] = useState<OptionType[]>([]);
+
+  const handleOptionChange = (optionName: string, selectedValue: string) => {
+    const updatedOptions = chosenOptions.map((option) =>
+      option.optionName === optionName ? { ...option, selectedValue } : option
+    );
+    setChosenOptions(updatedOptions);
+  };
   return (
     <>
       <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:mb-12">
@@ -86,13 +98,53 @@ export default function ProductOverview({ product }: Props) {
             <div className="mt-6">
               <h3 className="sr-only">Description</h3>
               <div
-                className="inherit-font-family space-y-6 text-base text-foreground"
+                className="inherit-font-family space-y-6 text-base text-muted-foreground"
                 // rome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
           )}
-          <AddToCart product={product} chosenOptions={chosenOptions} />
+          {/* Render Product Options */}
+          {product.options && (
+            <div className="mt-6">
+              {product.options.map((option) => (
+                <div key={option.name}>
+                  <p className="text-sm font-medium text-foreground">
+                    {option.name}
+                  </p>
+                  <div className="mt-1 flex space-x-4">
+                    {/* Add a check for 'option.values' before mapping */}
+                    {option.values?.map((value) => (
+                      // Add onClick handler to each option button
+                      // rome-ignore lint/a11y/useButtonType: <explanation>
+                      <button
+                        key={value.name}
+                        className={classNames(
+                          "px-2 py-2 text-sm font-medium uppercase border border-input rounded-sm",
+                          {
+                            "bg-gray-900 text-muted-foreground":
+                              chosenOptions.some(
+                                (opt) =>
+                                  opt.optionName === option.name &&
+                                  opt.selectedValue === value.name
+                              ),
+                            "hover:border-foreground": true,
+                          }
+                        )}
+                        // onClick={() =>
+                        //   handleOptionButtonClick( option , value.name)
+                        // }
+                      >
+                        {value.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <AddToCart product={product} />
         </div>
       </div>
     </>
