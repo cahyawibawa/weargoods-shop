@@ -1,6 +1,6 @@
 # [Weargoods](https://weargoods-shop.vercel.app/)
 
-This is an open source e-commerce storefront build with everything new in Next.js 13 and Swell for API
+<p align="center">This is an open source e-commerce storefront build with everything new in Next.js 13 and Swell.Js</p>
 
 [![weargoods](./public/images/landingpage.png)](https://weargoods-shop.vercel.app/)
 
@@ -13,12 +13,18 @@ This is an open source e-commerce storefront build with everything new in Next.j
 
 ## Features to be implemented
 
+- [x] Full e-commerce support:
+  - Product Detail Page
+  - Product Overview Page
+  - Search Product
+  - Filter Product
+  - Product Collections
+  - Cart & Checkout
+  - User Accounts
 - [x] Admin dashboard with auth, products, orders, subscriptions, and payments checkout with **Swell**
-- [x] Storefront with products & categoriess
-- [x] Validation with **Zod**
-- [x] Search & Filter Products
 - [x] Dark Mode
 - [ ] Seller and customer workflows
+- [ ] Order Details
 - [ ] Blog using **MDX** and **Contentlayer**
 - [ ] Newsletter subscription with **React Email** and **Resend**
 
@@ -37,9 +43,11 @@ This is an open source e-commerce storefront build with everything new in Next.j
    pnpm install
    ```
 
-4. Create a .env file
+4. Set your environment variables:
 
-   Create a `.env` file in the root directory and add the environment variables as shown in the `.env.example` file.
+   ```bash
+   mv .env.example .env.local
+   ```
 
 5. Run the development server:
 
