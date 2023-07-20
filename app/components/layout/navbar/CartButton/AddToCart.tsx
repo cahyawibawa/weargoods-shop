@@ -10,7 +10,6 @@ import { addToCart } from "@/lib/swell/cart";
 
 type Props = {
   product: swell.Product & { categories: swell.Category[] };
-  chosenOptions: { [key: string]: string };
 };
 
 export function AddToCart({ product }: Props) {
@@ -62,8 +61,8 @@ export function AddToCart({ product }: Props) {
     setToastMessage("Successfully added to cart");
   };
   return (
-    <form className="mb-8" onSubmit={handleSubmit}>
-      <div className="mt-10 flex flex-col sm:flex-row">
+    <form className="mb-2" onSubmit={handleSubmit}>
+      <div className="mt-4 flex flex-col sm:flex-row">
         {/* <div className="mr-4">
           <ProductOptions
             product={product}
