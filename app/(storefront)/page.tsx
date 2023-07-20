@@ -94,9 +94,7 @@ export default function Home({ categories }: { categories: Category[] }) {
       </section>
       <ProductCategories categories={categories} />
       <section>
-        <h2 className="font-heading text-2xl leading-[1.1]">
-          Featured Products
-        </h2>
+        <h2 className="font-heading text-2xl leading-[1.1]">Latest Products</h2>
         <div className="mt-4 grid grid-cols-1 rounded-md border-l border-t border-input sm:grid-cols-2 md:mt-8 md:grid-cols-3 lg:mt-10 lg:grid-cols-4 xl:grid-cols-5">
           {isLoading
             ? [...Array(20)].map((_, index) => (
