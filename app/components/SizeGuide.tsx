@@ -61,7 +61,7 @@ export function SizeGuide() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Size Cart</DialogTitle>
+          <DialogTitle>Size Chart</DialogTitle>
           <DialogDescription>Shoes Sizing</DialogDescription>
         </DialogHeader>
         <Table>
