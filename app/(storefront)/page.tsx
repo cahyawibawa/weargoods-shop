@@ -3,19 +3,16 @@ import Pagination from "../components/Pagination";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/products/ProductCard";
 import { getProducts } from "../lib/swell/products";
-import Banner from "@/components/Banner";
 import Balance, { Balancer } from "react-wrap-balancer";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import useUser from "@/hooks/useUser";
-import { Shell } from "@/components/Shell";
-import Image from "next/image";
-import { AspectRatio } from "@/components/ui/AspectRatio";
 import ProductCategories from "@/components/products/ProductCategories";
+
 export const revalidate = 1800;
 
-export default function Home({ categories }: { categories: Category[] }) {
+export default function Home() {
   const { user } = useUser();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -77,7 +74,7 @@ export default function Home({ categories }: { categories: Category[] }) {
               })
             )}
           >
-            Buy Now
+            Shop Now
           </Link>
           <Link
             href="https://www.swell.is/"
@@ -92,7 +89,6 @@ export default function Home({ categories }: { categories: Category[] }) {
           </Link>
         </div>
       </section>
-      <ProductCategories categories={categories} />
       <section>
         <h2 className="font-heading text-2xl leading-[1.1]">Latest Products</h2>
         <div className="mt-4 grid grid-cols-1 rounded-md border-l border-t border-input sm:grid-cols-2 md:mt-8 md:grid-cols-3 lg:mt-10 lg:grid-cols-4 xl:grid-cols-5">

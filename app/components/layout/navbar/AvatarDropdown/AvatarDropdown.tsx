@@ -101,7 +101,7 @@ export default function AvatarDropdown() {
                   <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
+              {/* <DropdownMenuItem asChild>
                 <Link href="/dashboard/orders">
                   <Icons.scrollText
                     className="mr-2 h-4 w-4"
@@ -110,7 +110,7 @@ export default function AvatarDropdown() {
                   Orders
                   <DropdownMenuShortcut>⌘O</DropdownMenuShortcut>
                 </Link>
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>

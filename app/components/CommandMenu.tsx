@@ -34,7 +34,6 @@ export function CommandMenu() {
   const { setTheme } = useTheme();
   const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
-  const { user, isLoading } = useUser();
   const [query, setQuery] = React.useState("");
   const debouncedQuery = useDebounce(query, 300);
   const [data, setData] = React.useState<
