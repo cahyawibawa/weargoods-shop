@@ -52,17 +52,9 @@ export default function ProductCard({ product, isLoading = false }: Props) {
                 : product.images[0]?.file?.url || ""
             }
             alt={product.name}
-            width={
-              isHovered
-                ? product.images[1]?.file?.width
-                : product.images[0]?.file?.width
-            }
-            height={
-              isHovered
-                ? product.images[1]?.file?.height
-                : product.images[0]?.file?.height
-            }
+            fill
             className="h-full w-full object-cover object-center"
+            priority
           />
         )}
       </div>
