@@ -299,7 +299,7 @@ export default function Navbar({ categories }: Props) {
                       <AvatarDropdown />
                     </div>
                   ) : (
-                    <Link href="/signin">
+                    <Link href="/signin" aria-label="signin user">
                       <div
                         className={cn(
                           buttonVariants({
