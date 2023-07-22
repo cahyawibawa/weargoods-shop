@@ -18,20 +18,11 @@ import { Icons } from "@/components/Icons";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/NavigationMenu";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/Accordion";
-import { navigationMenuTriggerStyle } from "@/components/ui/NavigationMenu";
 
 import { useRouter } from "next/navigation";
 
@@ -90,24 +81,6 @@ export default function Navbar({ categories }: Props) {
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-
-                {/* <div className="mt-2 space-y-6 border-muted px-4 py-6">
-                  <div className="flow-root">
-                    <Link
-                      href="/shop"
-                      onClick={handleClose}
-                      className={cn(
-                        "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
-                        pathname?.startsWith("/shop")
-                          ? "text-foreground"
-                          : "text-foreground/60"
-                      )}
-                    >
-                      Shop
-                    </Link>
-                  </div>
-                </div> */}
-
                 <div className="mt-2 px-5">
                   <Link
                     aria-label="Home"
@@ -195,7 +168,7 @@ export default function Navbar({ categories }: Props) {
             <div className="flex h-16 items-center">
               <button
                 type="button"
-                className="rounded-md bg-background p-2 text-gray-400 lg:hidden"
+                className="rounded-md bg-background p-2 lg:hidden"
                 onClick={handleOpen}
               >
                 <span className="sr-only">Open menu</span>
@@ -249,50 +222,10 @@ export default function Navbar({ categories }: Props) {
                   </NavigationMenu>
                 </div>
               </div>
-
-              {/* <div className="hidden lg:ml-8 lg:block lg:self-stretch">
-                <div className="flex h-full space-x-8">
-                  <Link
-                    href="/shop"
-                    className={cn(
-                      "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
-                      pathname?.startsWith("/shop")
-                        ? "text-foreground"
-                        : "text-foreground/60"
-                    )}
-                  >
-                    Shop
-                  </Link>
-                </div>
-              </div> */}
-
-              {/* Categories */}
-
-              {/* <div className="hidden lg:ml-8 lg:block lg:self-stretch">
-                <div className="flex h-full space-x-8">
-                  {categories.map((category) => (
-                    <Link
-                      key={category.id}
-                      href={`/${category.slug}`}
-                      className={cn(
-                        "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
-                        pathname?.startsWith(`/${category.slug}`)
-                          ? "text-foreground"
-                          : "text-foreground/60"
-                      )}
-                    >
-                      {category.name}
-                    </Link>
-                  ))}
-                </div>
-              </div> */}
-
               <div className="ml-auto flex items-center space-x-1 ">
                 <div className="w-full flex-1 md:w-auto md:flex-none">
                   <CommandMenu />
                 </div>
-                {/* <ModeToggle /> */}
-
                 <>
                   {user ? (
                     <div className="flex">

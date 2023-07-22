@@ -120,7 +120,7 @@ export default function ProductOverview({ product }: Props) {
                       <button
                         key={value.name}
                         className={classNames(
-                          "px-2 py-2 text-sm font-medium uppercase border border-input rounded-sm",
+                          "px-2 py-2 text-xs font-medium uppercase border border-input rounded-sm",
                           {
                             "bg-gray-900 text-muted-foreground":
                               chosenOptions.some(
