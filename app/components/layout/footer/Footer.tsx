@@ -127,9 +127,9 @@ export default function Footer() {
             aria-labelledby="newsletter-heading"
             className="space-y-2.5"
           >
-            <h4 className="text-base font-medium">
+            <h1 className="text-base font-medium">
               Subscribe to our newsletter
-            </h4>
+            </h1>
             <p className="text-sm text-muted-foreground">
               Get top deals, latest trends, and more.
             </p>
