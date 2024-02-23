@@ -1,7 +1,7 @@
 import swell from "lib/swell";
-import { ResultsResponse } from "types/swell/swell";
-import { Category } from "swell-js/types/category";
-import { Product } from "swell-js/types/product";
+import { type ResultsResponse } from "types/swell/swell";
+import { type Category } from "swell-js/types/category";
+import { type Product } from "swell-js/types/product";
 
 export const getProductFilters = (
   products: ResultsResponse<Product & { categories: Category[] }>
