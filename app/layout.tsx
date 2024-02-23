@@ -1,12 +1,13 @@
-import { siteConfig } from "config/site";
-import { ThemeProvider } from "components/theme-provider";
-import { fontSans, fontMono } from "lib/fonts";
-import { cn } from "lib/utils";
+import { Analytics } from '@vercel/analytics/react'
+import { ThemeProvider } from 'components/theme-provider'
+import { siteConfig } from 'config/site'
+import { fontMono, fontSans } from 'lib/fonts'
+import { cn } from 'lib/utils'
 import type { Metadata, Viewport } from 'next'
-import { Toaster } from "sonner";
-import { Analytics } from "@vercel/analytics/react";
-import "styles/globals.css";
-import localFont from "next/font/local";
+import { Toaster } from 'sonner'
+import 'styles/globals.css'
+import localFont from 'next/font/local'
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://weargoods.shop.vercel.app/'),
   title: {
@@ -15,44 +16,44 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Server Components",
-    "Server Actions",
-    "weargoods",
-    "Swell",
-    "commerce",
-    "e-commerce",
+    'Next.js',
+    'React',
+    'Tailwind CSS',
+    'Server Components',
+    'Server Actions',
+    'weargoods',
+    'Swell',
+    'commerce',
+    'e-commerce',
   ],
   authors: [
     {
-      name: "cahya wibawa",
-      url: "https://github.com/cahyawibawa",
+      name: 'cahya wibawa',
+      url: 'https://github.com/cahyawibawa',
     },
   ],
-  creator: "cahya wibawa",
+  creator: 'cahya wibawa',
   openGraph: {
-    type: "website",
-    locale: "en_US",
+    type: 'website',
+    locale: 'en_US',
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.jpg`],
-    creator: "@lictoyagami",
+    images: [`${siteConfig.url}/opengraph-image.png`],
+    creator: '@radianescence',
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
   },
-};
+}
 
 export const viewport: Viewport = {
   colorScheme: 'dark light',
@@ -62,15 +63,15 @@ export const viewport: Viewport = {
   ],
 }
 
-export const revalidate = 1800;
+export const revalidate = 1800
 
 // Font files can be colocated inside of `pages`
 const fontHeading = localFont({
-  src: "../assets/fonts/CalSans-SemiBold.woff2",
-  variable: "--font-heading",
-});
+  src: '../assets/fonts/CalSans-SemiBold.woff2',
+  variable: '--font-heading',
+})
 interface RootLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
@@ -80,7 +81,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            'min-h-screen bg-background font-sans antialiased',
             fontSans.variable,
             fontMono.variable,
             fontHeading.variable
@@ -94,5 +95,5 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         </body>
       </html>
     </>
-  );
+  )
 }
