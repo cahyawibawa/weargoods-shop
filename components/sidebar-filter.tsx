@@ -1,75 +1,75 @@
-"use client";
-import useMenu from "hooks/use-menu";
-import { Dialog, Disclosure, Transition } from "@headlessui/react";
-import { ChevronDownIcon, PlusIcon } from "@heroicons/react/20/solid";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import classNames from "classnames";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { ChangeEvent } from "react";
-import { Fragment } from "react";
-import { Checkbox } from "components/ui/checkbox";
+'use client'
+
+import { Dialog, Disclosure, Transition } from '@headlessui/react'
+import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid'
+import { XMarkIcon } from '@heroicons/react/24/outline'
+import classNames from 'classnames'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "components/ui/accordion";
-import { Sorter } from "components/sorter";
+} from 'components/ui/accordion'
+import useMenu from 'hooks/use-menu'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import type { ChangeEvent } from 'react'
+import { Fragment } from 'react'
 
 type Props = {
   filters: {
-    id: string;
-    label: string;
-    type: "range" | "select";
+    id: string
+    label: string
+    type: 'range' | 'select'
     options: {
-      value: string | number;
-      label: string | number;
-    }[];
-    interval?: number;
-  }[];
-};
+      value: string | number
+      label: string | number
+    }[]
+    interval?: number
+  }[]
+}
 
 interface FilterProps {
-  query?: FilterParams;
+  query?: FilterParams
 }
 
 export default function SidebarFilter({ filters, query }: Props & FilterProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const opened = useMenu((state) => state.filter);
-  const open = useMenu((state) => state.open);
-  const close = useMenu((state) => state.close);
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const opened = useMenu((state) => state.filter)
+  const open = useMenu((state) => state.open)
+  const close = useMenu((state) => state.close)
 
-  const handleOpen = () => open("filter");
-  const handleClose = () => close("filter");
+  const handleOpen = () => open('filter')
+  const handleClose = () => close('filter')
 
   const checkIfValueExists = (key: string, value: string | number) => {
-    const values = searchParams.get(key)?.split(",") || [];
-    return values.includes(String(value));
-  };
+    const values = searchParams.get(key)?.split(',') || []
+    return values.includes(String(value))
+  }
 
   const handleFilterChange = (
     e: ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    const array = newSearchParams.get(key)?.split(",") || [];
+    const newSearchParams = new URLSearchParams(searchParams.toString())
+    const array = newSearchParams.get(key)?.split(',') || []
     if (e.target.checked) {
-      array.push(e.target.value);
-      newSearchParams.set(key, array.toString() || e.target.value);
+      array.push(e.target.value)
+      newSearchParams.set(key, array.toString() || e.target.value)
     } else {
-      const newArray = array.filter((value) => value !== e.target.value);
+      const newArray = array.filter((value) => value !== e.target.value)
       if (newArray.length > 0) {
-        newSearchParams.set(key, newArray.toString());
+        newSearchParams.set(key, newArray.toString())
       } else {
-        newSearchParams.delete(key);
+        newSearchParams.delete(key)
       }
     }
     router.push(
-      pathname + (newSearchParams.size > 0 ? `?${newSearchParams}` : "")
-    );
-  };
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      pathname + (newSearchParams.size > 0 ? `?${newSearchParams}` : '')
+    )
+  }
 
   return (
     <>
@@ -103,7 +103,7 @@ export default function SidebarFilter({ filters, query }: Props & FilterProps) {
             >
               <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-background py-4 pb-6 shadow-xl">
                 <div className="flex items-center justify-between px-4">
-                  <h2 className="text-lg font-medium text-foregound">
+                  <h2 className="text-foregound text-lg font-medium">
                     Filters
                   </h2>
                   <button
@@ -119,7 +119,7 @@ export default function SidebarFilter({ filters, query }: Props & FilterProps) {
                 {/* Filters */}
                 <form className="mt-4">
                   {filters
-                    .filter((filter) => filter.type !== "range")
+                    .filter((filter) => filter.type !== 'range')
                     .map((section) => (
                       <Disclosure
                         as="div"
@@ -136,8 +136,8 @@ export default function SidebarFilter({ filters, query }: Props & FilterProps) {
                                 <span className="ml-6 flex h-7 items-center">
                                   <ChevronDownIcon
                                     className={classNames(
-                                      open ? "-rotate-180" : "rotate-0",
-                                      "h-5 w-5 transform"
+                                      open ? '-rotate-180' : 'rotate-0',
+                                      'h-5 w-5 transform'
                                     )}
                                     aria-hidden="true"
                                   />
@@ -204,10 +204,10 @@ export default function SidebarFilter({ filters, query }: Props & FilterProps) {
         </button>
 
         <div className="hidden pb-2 lg:block">
-          <form className="space-y-10 divide-y divide-foregound">
+          <form className="divide-foregound space-y-10 divide-y">
             <Accordion type="single" collapsible>
               {filters
-                .filter((filter) => filter.type !== "range")
+                .filter((filter) => filter.type !== 'range')
                 .map((section, sectionIdx) => (
                   <AccordionItem
                     key={section.id}
@@ -230,7 +230,7 @@ export default function SidebarFilter({ filters, query }: Props & FilterProps) {
                               onChange={(e) =>
                                 handleFilterChange(e, section.id)
                               }
-                              className="h-4 w-4 rounded border-input text-indigo-600 focus:ring-indigo-500 ring-0"
+                              className="h-4 w-4 rounded border-input text-indigo-600 ring-0 focus:ring-indigo-500"
                             />
                             <label
                               htmlFor={`${section.id}-${optionIdx}`}
@@ -250,5 +250,5 @@ export default function SidebarFilter({ filters, query }: Props & FilterProps) {
         </div>
       </aside>
     </>
-  );
+  )
 }

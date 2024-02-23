@@ -7,7 +7,7 @@ export interface FooterItem {
     external?: boolean;
   }[];
 }
-import { type Icons } from "@/components/Icons";
+import { type Icons } from "components/icons";
 export interface NavItem {
   title: string;
   href?: string;

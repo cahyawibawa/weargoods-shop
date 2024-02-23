@@ -19,8 +19,8 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
+    missingSuspenseWithCSRBailout: false,
     // ppr: true,
-    esmExternals: "loose",
   },
 };
 

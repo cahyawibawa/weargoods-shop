@@ -6,14 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import useSWR, { useSWRConfig } from "swr";
-import { ShoppingBag } from "lucide-react";
 import { Button } from "components/ui/button";
 import { buttonVariants } from "components/ui/button";
 import { cn } from "lib/utils";
 import { Icons } from "components/icons";
 import useUser from "hooks/use-user";
 import { useRouter } from "next/navigation";
-import Disclaimer from "components/disclaimer";
 export default function CartButton() {
   const opened = useMenu((state) => state.cart);
   const open = useMenu((state) => state.open);
@@ -167,6 +165,7 @@ export default function CartButton() {
                                           onClick={async () => {
                                             // rome-ignore lint/style/noNonNullAssertion: <explanation>
                                             await removeFromCart(item.id!);
+                                            // eslint-disable-next-line @typescript-eslint/no-floating-promises
                                             mutate("cart");
                                           }}
                                         >
@@ -195,7 +194,7 @@ export default function CartButton() {
                         <p className="mt-0.5 text-sm text-gray-500">
                           Shipping and taxes calculated at checkout.
                         </p>
-                        <Disclaimer />
+                       
                         <div className="mt-6">
                           {user ? (
                             <Button

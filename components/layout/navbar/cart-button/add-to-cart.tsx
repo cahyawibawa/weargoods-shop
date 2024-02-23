@@ -1,45 +1,45 @@
-import { SizeGuide } from "components/size-guide";
-import { Input } from "components/ui/input";
-import { Button } from "components/ui/button";
-import { Loader2 } from "lucide-react";
-import { useSWRConfig } from "swr";
-import { useRouter } from "next/navigation";
-import { useState, useTransition, useEffect } from "react";
-import { useToast } from "hooks/use-toast";
-import { addToCart } from "lib/swell/cart";
+import { SizeGuide } from 'components/size-guide'
+import { Button } from 'components/ui/button'
+import { Input } from 'components/ui/input'
+import { useToast } from 'hooks/use-toast'
+import { addToCart } from 'lib/swell/cart'
+import { Loader2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState, useTransition } from 'react'
+import { useSWRConfig } from 'swr'
 
 type Props = {
-  product: swell.Product & { categories: swell.Category[] };
-};
+  product: swell.Product & { categories: swell.Category[] }
+}
 
 export function AddToCart({ product }: Props) {
-  const [chosenOptions, setChosenOptions] = useState({});
-  const { mutate } = useSWRConfig();
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-  const [loading, setLoading] = useState(false);
-  const isMutating = loading || isPending;
-  const { toast } = useToast();
-  const [toastMessage, setToastMessage] = useState("");
-  const [quantity, setQuantity] = useState(1);
-  const [pleaseSelectAllOptions, setPleaseSelectAllOptions] = useState("");
+  const [chosenOptions, setChosenOptions] = useState({})
+  const { mutate } = useSWRConfig()
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+  const [loading, setLoading] = useState(false)
+  const isMutating = loading || isPending
+  const { toast } = useToast()
+  const [toastMessage, setToastMessage] = useState('')
+  const [quantity, setQuantity] = useState(1)
+  const [pleaseSelectAllOptions, setPleaseSelectAllOptions] = useState('')
   useEffect(() => {
-    product.options?.length === Object.keys(chosenOptions).length;
+    product.options?.length === Object.keys(chosenOptions).length
     product.options?.length === Object.keys(chosenOptions).length &&
-      setPleaseSelectAllOptions("");
+      setPleaseSelectAllOptions('')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Object.keys(chosenOptions).length]);
+  }, [Object.keys(chosenOptions).length])
   useEffect(() => {
-    if (!isMutating && toastMessage !== "") {
+    if (!isMutating && toastMessage !== '') {
       toast({
         description: toastMessage,
-      });
-      setToastMessage(""); // Clear the toast message
+      })
+      setToastMessage('') // Clear the toast message
     }
-  }, [isMutating, toast, toastMessage]);
+  }, [isMutating, toast, toastMessage])
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setLoading(true);
+    event.preventDefault()
+    setLoading(true)
 
     await addToCart({
       product_id: product.id,
@@ -48,18 +48,19 @@ export function AddToCart({ product }: Props) {
       //   name: optionName,
       //   value: chosenOptions[optionName],
       // })) as CartOption[],
-    });
+    })
 
-    setLoading(false);
+    setLoading(false)
 
-    mutate("cart"); // Mutate the "cart" key to update the cart data
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    mutate('cart') // Mutate the "cart" key to update the cart data
 
     startTransition(() => {
-      router.refresh(); // Use replace() instead of refresh()
-    });
+      router.refresh() // Use replace() instead of refresh()
+    })
 
-    setToastMessage("Successfully added to cart");
-  };
+    setToastMessage('Successfully added to cart')
+  }
   return (
     <form className="mb-2" onSubmit={handleSubmit}>
       <div className="mt-4 flex flex-col sm:flex-row">
@@ -76,7 +77,7 @@ export function AddToCart({ product }: Props) {
             min={1}
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
-            className="w-20 mr-2"
+            className="mr-2 w-20"
           />
         </div>
 
@@ -87,15 +88,15 @@ export function AddToCart({ product }: Props) {
 
       <Button
         type="submit"
-        className="max-w-xs w-full hover:bg-opacity-90 mt-4"
+        className="mt-4 w-full max-w-xs hover:bg-opacity-90"
         disabled={isMutating}
       >
         {isMutating ? (
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          "Add to Cart"
+          'Add to Cart'
         )}
       </Button>
     </form>
-  );
+  )
 }

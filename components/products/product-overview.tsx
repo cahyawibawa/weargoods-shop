@@ -1,31 +1,31 @@
-"use client";
+'use client'
 
-import { Tab } from "@headlessui/react";
-import classNames from "classnames";
-import Image from "next/image";
-import { AddToCart } from "components/layout/navbar/cart-button/add-to-cart";
-import { useState } from "react";
+import { Tab } from '@headlessui/react'
+import classNames from 'classnames'
+import { AddToCart } from 'components/layout/navbar/cart-button/add-to-cart'
+import Image from 'next/image'
+import { useState } from 'react'
 
 type Props = {
-  product: swell.Product & { categories: swell.Category[] };
-};
+  product: swell.Product & { categories: swell.Category[] }
+}
 type OptionType = {
-  optionName: string;
-  selectedValue: string;
-};
+  optionName: string
+  selectedValue: string
+}
 
 export default function ProductOverview({ product }: Props) {
-  const [chosenOptions, setChosenOptions] = useState<OptionType[]>([]);
+  const [chosenOptions, setChosenOptions] = useState<OptionType[]>([])
 
   const handleOptionChange = (optionName: string, selectedValue: string) => {
     const updatedOptions = chosenOptions.map((option) =>
       option.optionName === optionName ? { ...option, selectedValue } : option
-    );
-    setChosenOptions(updatedOptions);
-  };
+    )
+    setChosenOptions(updatedOptions)
+  }
   return (
     <>
-      <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:mb-12">
+      <div className="lg:mb-12 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
         {product.images && (
           <Tab.Group as="div" className="flex flex-col-reverse">
             <div className="mx-auto mt-6 w-full px-6 sm:px-0">
@@ -41,7 +41,7 @@ export default function ProductOverview({ product }: Props) {
                         <span className="absolute inset-0 overflow-hidden rounded-md">
                           <Image
                             src={image.file?.url as string}
-                            alt={image.caption || ""}
+                            alt={image.caption || ''}
                             className="h-full w-full bg-gray-200 object-cover object-center"
                             width={image.file?.width}
                             height={image.file?.height}
@@ -49,8 +49,8 @@ export default function ProductOverview({ product }: Props) {
                         </span>
                         <span
                           className={classNames(
-                            selected ? "ring-foreground" : "ring-transparent",
-                            "pointer-events-none absolute inset-0 rounded-md ring-0 ring-offset-1"
+                            selected ? 'ring-foreground' : 'ring-transparent',
+                            'pointer-events-none absolute inset-0 rounded-md ring-0 ring-offset-1'
                           )}
                           aria-hidden="true"
                         />
@@ -65,9 +65,9 @@ export default function ProductOverview({ product }: Props) {
               {product.images.map((image) => (
                 <Tab.Panel key={image.id}>
                   <Image
-                    // rome-ignore lint/style/noNonNullAssertion: <explanation>
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
                     src={image.file?.url!}
-                    alt={image.caption || ""}
+                    alt={image.caption || ''}
                     className="min-h-fit bg-gray-200 object-cover object-center sm:rounded-lg"
                     width={image.file?.width}
                     height={image.file?.height}
@@ -87,9 +87,9 @@ export default function ProductOverview({ product }: Props) {
             <h2 className="sr-only">Product information</h2>
 
             <p className="text-3xl tracking-tight text-foreground">
-              {new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR",
+              {new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
               }).format(product.price || 0)}
             </p>
           </div>
@@ -142,5 +142,5 @@ export default function ProductOverview({ product }: Props) {
         </div>
       </div>
     </>
-  );
+  )
 }

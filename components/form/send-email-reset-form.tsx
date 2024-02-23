@@ -6,7 +6,6 @@ import { Input } from "components/ui/input";
 import { Label } from "components/ui/label";
 import { Icons } from "components/icons";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import swell from "lib/swell";
 import { useToast } from "hooks/use-toast";

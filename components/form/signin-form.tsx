@@ -6,7 +6,7 @@ import { Input } from "components/ui/input";
 import { Label } from "components/ui/label";
 import { Icons } from "components/icons";
 import { loginUser } from "lib/swell/account";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter} from "next/navigation";
 import { ToastAction } from "components/ui/toast";
 import { useToast } from "hooks/use-toast";
 import { useTransition } from "react";

@@ -3,13 +3,11 @@ import Link from "next/link";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "components/ui/card";
 import { cn } from "lib/utils";
-import { OAuthSignIn } from "components/auth/oauth";
 import { SignInForm } from "components/form/signin-form";
 import { Shell } from "components/shell";
 import { buttonVariants } from "components/ui/button";

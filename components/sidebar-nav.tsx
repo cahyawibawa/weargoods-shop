@@ -19,7 +19,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
   return (
     <div className="flex w-full flex-col gap-2">
       {items.map((item, index) => {
-        const Icon = Icons[item.icon ?? "chevronLeft"];
+        const Icon = Icons.chevronLeft;
 
         return item.href ? (
           <Link

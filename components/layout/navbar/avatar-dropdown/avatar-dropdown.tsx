@@ -1,9 +1,6 @@
-import { Avatar, AvatarFallback } from "components/ui/avatar";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Fragment, useTransition, useState } from "react";
-import { useSWRConfig } from "swr";
-import useUser from "hooks/use-user";
+import { Icons } from 'components/icons'
+import { Avatar, AvatarFallback } from 'components/ui/avatar'
+import { Button, buttonVariants } from 'components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,42 +10,47 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "components/ui/dropdown-menu";
-import { Button, buttonVariants } from "components/ui/button";
-import { Icons } from "components/icons";
-import { logoutUser } from "lib/swell/account";
+} from 'components/ui/dropdown-menu'
+import useUser from 'hooks/use-user'
+import { logoutUser } from 'lib/swell/account'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { Fragment, useState, useTransition } from 'react'
+import { useSWRConfig } from 'swr'
 
 export default function AvatarDropdown() {
-  const { user } = useUser();
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-  const { mutate } = useSWRConfig();
-  const [isLoading, setIsLoading] = useState(true);
+  const { user } = useUser()
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+  const { mutate } = useSWRConfig()
+  const [isLoading, setIsLoading] = useState(true)
 
   const handleLogout = async () => {
     startTransition(() => {
-      setIsLoading(true);
+      setIsLoading(true)
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       logoutUser().then(() => {
-        setIsLoading(false);
-        mutate("/api/me", null);
-        router.refresh();
-        router.push("/");
-      });
-    });
-  };
+        setIsLoading(false)
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        mutate('/api/me', null)
+        router.refresh()
+        router.push('/')
+      })
+    })
+  }
 
   const getEmailInitials = (email: string | undefined) => {
-    if (!email || typeof email !== "string") return "";
+    if (!email || typeof email !== 'string') return ''
 
-    const trimmedEmail = email.trim();
-    if (trimmedEmail.length === 0) return "";
+    const trimmedEmail = email.trim()
+    if (trimmedEmail.length === 0) return ''
 
     const [firstChar, lastChar] = [
       trimmedEmail[0],
       trimmedEmail[trimmedEmail.length - 1],
-    ];
-    return `${firstChar}${lastChar}`;
-  };
+    ]
+    return `${firstChar}${lastChar}`
+  }
 
   return (
     <>
@@ -61,7 +63,7 @@ export default function AvatarDropdown() {
             >
               <Avatar className="h-7 w-7">
                 <AvatarFallback>
-                  <div className="h-full w-full rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-foreground text-xs font-medium">
+                  <div className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-xs font-medium text-foreground">
                     {getEmailInitials(user.email)}
                   </div>
                 </AvatarFallback>
@@ -116,7 +118,7 @@ export default function AvatarDropdown() {
             <DropdownMenuItem asChild>
               <Link href="" onClick={handleLogout}>
                 <Icons.logout className="mr-2 h-4 w-4" aria-hidden="true" />
-                {isPending ? "Logging out..." : "Log out"}
+                {isPending ? 'Logging out...' : 'Log out'}
                 <DropdownMenuShortcut>⇧⌘L</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
@@ -126,7 +128,7 @@ export default function AvatarDropdown() {
         <Link href="/signin">
           <div
             className={buttonVariants({
-              size: "sm",
+              size: 'sm',
             })}
           >
             Sign In
@@ -135,5 +137,5 @@ export default function AvatarDropdown() {
         </Link>
       )}
     </>
-  );
+  )
 }

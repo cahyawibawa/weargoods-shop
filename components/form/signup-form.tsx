@@ -7,7 +7,6 @@ import { Label } from "components/ui/label";
 import { Icons } from "components/icons";
 import { createUser } from "lib/swell/account";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSWRConfig } from "swr";
 
@@ -32,6 +31,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
     const response = await createUser(data);
     setIsLoading(false);
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     mutate("/api/me", response);
     router.refresh();
     router.push("/");

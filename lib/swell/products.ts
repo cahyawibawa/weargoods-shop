@@ -75,7 +75,7 @@ export const getProducts = async (
 
   const results = response.results.map((product) => ({
     ...product,
-    categories: product.categories as swell.Category[],
+    categories: product.categories,
   }));
 
   const totalCount = response.count;

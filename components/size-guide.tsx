@@ -1,12 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "components/ui/Table";
+import { Button } from 'components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -15,41 +7,49 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "components/ui/Dialog";
-import { Button } from "components/ui/Button";
-import { Grid } from "lucide-react";
+} from 'components/ui/dialog'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'components/ui/table'
+import { Grid } from 'lucide-react'
 
 const sizes = [
   {
-    sizeOption: "US",
-    sizeA: "7",
-    sizeB: "7.5",
-    sizeC: "8",
-    sizeD: "9",
-    sizeE: "9.5",
-    sizeF: "10",
-    sizeG: "11",
+    sizeOption: 'US',
+    sizeA: '7',
+    sizeB: '7.5',
+    sizeC: '8',
+    sizeD: '9',
+    sizeE: '9.5',
+    sizeF: '10',
+    sizeG: '11',
   },
   {
-    sizeOption: "EU",
-    sizeA: "39",
-    sizeB: "40",
-    sizeC: "41",
-    sizeD: "42",
-    sizeE: "42.5",
-    sizeF: "43",
-    sizeG: "44",
+    sizeOption: 'EU',
+    sizeA: '39',
+    sizeB: '40',
+    sizeC: '41',
+    sizeD: '42',
+    sizeE: '42.5',
+    sizeF: '43',
+    sizeG: '44',
   },
   {
-    sizeOption: "CM",
-    sizeA: "25.33",
-    sizeB: "26",
-    sizeC: "26.66",
-    sizeD: "27.33",
-    sizeE: "28",
-    sizeF: "28.66",
+    sizeOption: 'CM',
+    sizeA: '25.33',
+    sizeB: '26',
+    sizeC: '26.66',
+    sizeD: '27.33',
+    sizeE: '28',
+    sizeF: '28.66',
   },
-];
+]
 
 export function SizeGuide() {
   return (
@@ -122,5 +122,5 @@ export function SizeGuide() {
         </DialogFooter> */}
       </DialogContent>
     </Dialog>
-  );
+  )
 }

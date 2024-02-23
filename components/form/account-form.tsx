@@ -82,6 +82,7 @@ export function AccountForm({ account }: Props) {
 
     const response = await updateAccount(formData);
     startTransition(() => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       mutate("/api/me", response);
       router.refresh();
     });

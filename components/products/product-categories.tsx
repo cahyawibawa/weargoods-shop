@@ -1,15 +1,15 @@
-import Image from "next/image";
-import Link from "next/link";
-import { AspectRatio } from "components/ui/aspect-ratio";
-import Balance, { Balancer } from "react-wrap-balancer";
+import { AspectRatio } from 'components/ui/aspect-ratio'
+import Image from 'next/image'
+import Link from 'next/link'
+import Balance from 'react-wrap-balancer'
 
 export default function ProductCategories({
   categories,
 }: {
-  categories: Category[];
+  categories: Category[]
 }) {
   if (!categories || !Array.isArray(categories)) {
-    return null; // Or handle the case when categories is not available or not an array
+    return null // Or handle the case when categories is not available or not an array
   }
 
   return (
@@ -31,6 +31,7 @@ export default function ProductCategories({
           <Link
             aria-label={`Go to ${category.name}`}
             key={category.id}
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
             href={`/${category.slug}`}
           >
             <div className="group relative overflow-hidden rounded-md">
@@ -57,5 +58,5 @@ export default function ProductCategories({
         ))}
       </div>
     </section>
-  );
+  )
 }

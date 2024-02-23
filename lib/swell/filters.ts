@@ -1,5 +1,5 @@
 import swell from "lib/swell";
-import { ResultsResponse } from "types/Swell/swell";
+import { ResultsResponse } from "types/swell/swell";
 import { Category } from "swell-js/types/category";
 import { Product } from "swell-js/types/product";
 
