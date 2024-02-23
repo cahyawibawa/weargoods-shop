@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Shell } from "@/components/Shell";
-import { Header } from "@/components/Header";
+import { Shell } from "components/shell";
+import { Header } from "components/header";
 export const metadata: Metadata = {
   title: "Orders",
   description: "Track your order",

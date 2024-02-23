@@ -1,5 +1,5 @@
-import { ErrorCard } from "@/components/ErrorCard";
-import { Shell } from "@/components/Shell";
+import { ErrorCard } from "components/error-card";
+import { Shell } from "components/shell";
 
 export default function PageNotFound() {
   return (

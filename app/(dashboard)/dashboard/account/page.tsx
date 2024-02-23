@@ -1,8 +1,8 @@
-import { Separator } from "@/components/ui/Separator";
-import { AccountForm } from "@/components/form/AccountForm";
+import { Separator } from "components/ui/separator";
+import { AccountForm } from "components/form/account-form";
 import type { Metadata } from "next";
-import { Shell } from "@/components/Shell";
-import { Header } from "@/components/Header";
+import { Shell } from "components/shell";
+import { Header } from "components/header";
 export const metadata: Metadata = {
   title: "Account",
   description: "Manage your account settings",

@@ -7,13 +7,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import { OAuthSignIn } from "@/components/auth/Oauth";
-import { Shell } from "@/components/Shell";
-import { SignUpForm } from "@/components/form/SignUpForm";
-import { buttonVariants } from "@/components/ui/Button";
-import { Icons } from "@/components/Icons";
-import { cn } from "@/lib/utils";
+} from "components/ui/card";
+import { OAuthSignIn } from "components/auth/oauth";
+import { Shell } from "components/shell";
+import { SignUpForm } from "components/form/signup-form";
+import { buttonVariants } from "components/ui/button";
+import { Icons } from "components/icons";
+import { cn } from "lib/utils";
 export const metadata: Metadata = {
   title: "Sign Up",
   description: "Sign Up to your Weargoods account.",

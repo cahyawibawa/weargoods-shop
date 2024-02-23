@@ -1,6 +1,6 @@
-import ProductCard from "@/components/products/ProductCard";
-import { getCategoryBySlug } from "@/lib/swell/categories";
-import { getProductsByCategorySlug } from "@/lib/swell/products";
+import ProductCard from "components/products/product-card";
+import { getCategoryBySlug } from "lib/swell/categories";
+import { getProductsByCategorySlug } from "lib/swell/products";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 

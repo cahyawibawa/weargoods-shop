@@ -6,12 +6,12 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import { SendEmailResetForm } from "@/components/form/SendEmailResetForm";
-import { Shell } from "@/components/Shell";
-import { buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
-import { Icons } from "@/components/Icons";
+} from "components/ui/card";
+import { SendEmailResetForm } from "components/form/send-email-reset-form";
+import { Shell } from "components/shell";
+import { buttonVariants } from "components/ui/button";
+import { cn } from "lib/utils";
+import { Icons } from "components/icons";
 export const metadata: Metadata = {
   title: "Reset Password",
   description: "Enter your email to reset your password",

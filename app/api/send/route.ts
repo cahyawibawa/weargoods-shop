@@ -1,9 +1,9 @@
 import { Resend } from "resend";
-import { subscribeToNewsletterSchema } from "@/lib/validations/email";
+import { subscribeToNewsletterSchema } from "lib/validations/email";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import WeargoodsNewsletterEmail from "@/components/emails/WeargoodsNewsletterEmail";
-import { getCurrentUser } from "@/lib/swell/account";
+import WeargoodsNewsletterEmail from "components/emails/weargoods-newsletter-email";
+import { getCurrentUser } from "lib/swell/account";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {

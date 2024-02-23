@@ -1,6 +1,6 @@
-import { getCategories } from "@/lib/swell/categories";
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
+import { getCategories } from "lib/swell/categories";
+import Footer from "components/layout/footer";
+import Navbar from "components/layout/navbar/navbar";
 import NextTopLoader from "nextjs-toploader";
 interface StorefrontProps {
   children?: React.ReactNode;

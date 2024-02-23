@@ -1,11 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  pageExtensions: ["tsx", "mdx", "ts", "js"],
   images: {
-    domains: ["cdn.swell.store", "cdn.schema.io", "images.unsplash.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.swell.store",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.schema.io",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com"
+      }
+    ],
+    unoptimized: true,
   },
   experimental: {
-    appDir: true,
+    // ppr: true,
+    esmExternals: "loose",
   },
 };
 

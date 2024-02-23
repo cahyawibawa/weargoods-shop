@@ -1,5 +1,5 @@
-import ProductOverview from "@/components/products/ProductOverview";
-import { getProductBySlug } from "@/lib/swell/products";
+import ProductOverview from "components/products/product-overview";
+import { getProductBySlug } from "lib/swell/products";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 

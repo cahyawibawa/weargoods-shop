@@ -1,9 +1,9 @@
-import { SidebarNav } from "@/components/SideBarNav";
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
-import { getCategories } from "@/lib/swell/categories";
-import { ScrollArea } from "@/components/ui/ScrollArea";
-import { dashboardConfig } from "@/config/dashboard";
+import { SidebarNav } from "components/sidebar-nav";
+import Footer from "components/layout/footer";
+import Navbar from "components/layout/navbar/navbar";
+import { getCategories } from "lib/swell/categories";
+import { ScrollArea } from "components/ui/scroll-area";
+import { dashboardConfig } from "config/dashboard";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ export default async function DashboardLayout({
         </aside>
         <div className="flex-1 lg:max-w-2xl">{children}</div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

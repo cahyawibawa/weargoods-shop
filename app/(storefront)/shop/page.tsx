@@ -1,10 +1,10 @@
 "use client";
-import { SidebarFilter } from "@/components/sidebar-filter";
-import ProductCard from "@/components/products/ProductCard";
-import { getProductFilters } from "@/lib/swell/filters";
-import { getProducts } from "@/lib/swell/products";
+import SidebarFilter from "components/sidebar-filter";
+import ProductCard from "components/products/product-card";
+import { getProductFilters } from "lib/swell/filters";
+import { getProducts } from "lib/swell/products";
 import { redirect } from "next/navigation";
-import Pagination from "@/components/Pagination";
+import Pagination from "components/pagination";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 

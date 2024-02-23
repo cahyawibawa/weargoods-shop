@@ -1,6 +1,6 @@
-import { BASE_URL } from "@/constants";
-import { getCategories } from "@/lib/swell/categories";
-import { getProducts } from "@/lib/swell/products";
+import { BASE_URL } from "lib/utils";
+import { getCategories } from "lib/swell/categories";
+import { getProducts } from "lib/swell/products";
 import { MetadataRoute } from "next";
 
 export const revalidate = 1800;

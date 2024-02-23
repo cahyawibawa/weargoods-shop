@@ -7,13 +7,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import { cn } from "@/lib/utils";
-import { OAuthSignIn } from "@/components/auth/Oauth";
-import { SignInForm } from "@/components/form/SignInForm";
-import { Shell } from "@/components/Shell";
-import { buttonVariants } from "@/components/ui/Button";
-import { Icons } from "@/components/Icons";
+} from "components/ui/card";
+import { cn } from "lib/utils";
+import { OAuthSignIn } from "components/auth/oauth";
+import { SignInForm } from "components/form/signin-form";
+import { Shell } from "components/shell";
+import { buttonVariants } from "components/ui/button";
+import { Icons } from "components/icons";
 
 export const metadata: Metadata = {
   title: "Sign In",

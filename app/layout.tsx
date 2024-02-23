@@ -1,13 +1,14 @@
-import { siteConfig } from "@/config/site";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { fontSans, fontMono } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
-import { Toaster } from "@/components/ui/Toaster";
+import { siteConfig } from "config/site";
+import { ThemeProvider } from "components/theme-provider";
+import { fontSans, fontMono } from "lib/fonts";
+import { cn } from "lib/utils";
+import type { Metadata, Viewport } from 'next'
+import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
-import "./styles/globals.css";
+import "styles/globals.css";
 import localFont from "next/font/local";
 export const metadata: Metadata = {
+  metadataBase: new URL('https://weargoods.shop.vercel.app/'),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
@@ -31,10 +32,6 @@ export const metadata: Metadata = {
     },
   ],
   creator: "cahya wibawa",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -57,11 +54,19 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  colorScheme: 'dark light',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+}
+
 export const revalidate = 1800;
 
 // Font files can be colocated inside of `pages`
 const fontHeading = localFont({
-  src: "assets/fonts/CalSans-SemiBold.woff2",
+  src: "../assets/fonts/CalSans-SemiBold.woff2",
   variable: "--font-heading",
 });
 interface RootLayoutProps {

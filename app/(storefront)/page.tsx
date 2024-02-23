@@ -1,19 +1,13 @@
 "use client";
-import Pagination from "../components/Pagination";
+import Pagination from "components/pagination";
 import { useEffect, useState } from "react";
-import ProductCard from "../components/products/ProductCard";
-import { getProducts } from "../lib/swell/products";
-import Balance, { Balancer } from "react-wrap-balancer";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
-import useUser from "@/hooks/useUser";
-import ProductCategories from "@/components/products/ProductCategories";
+import ProductCard from "components/products/product-card";
+import { getProducts } from "lib/swell/products";
+
 
 export const revalidate = 1800;
 
 export default function Home() {
-  const { user } = useUser();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [productData, setProductData] = useState<
@@ -30,7 +24,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchData(currentPage);
+    void fetchData(currentPage);
   }, [currentPage]);
 
   const handlePageChange = (page: number) => {
@@ -41,12 +35,12 @@ export default function Home() {
     <>
       {/* <Banner /> */}
 
-      <section
+      {/* <section
         id="hero"
         aria-labelledby="hero-heading"
         className="mx-auto flex w-full max-w-[64rem] flex-col items-center justify-center gap-4 pb-8 pt-6 text-center md:pb-12 md:pt-10 lg:py-48"
       >
-        {/* {githubStars ? (
+        {githubStars ? (
           <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
             <Badge className="rounded-md px-3.5 py-1.5" variant="secondary">
               <Icons.gitHub className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
@@ -54,7 +48,7 @@ export default function Home() {
               <span className="sr-only">GitHub</span>
             </Badge>
           </Link>
-        ) : null} */}
+        ) : null}
         <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
           <Balancer>
             An e-commerce storefront built with Next.js 13 and Swell
@@ -88,9 +82,9 @@ export default function Home() {
             Sell Now
           </Link>
         </div>
-      </section>
+      </section> */}
       <section>
-        <h2 className="font-heading text-2xl leading-[1.1]">Latest Products</h2>
+        {/* <h2 className="font-heading text-2xl leading-[1.1]">Latest Products</h2> */}
         <div className="mt-4 grid grid-cols-1 rounded-md border-l border-t border-input sm:grid-cols-2 md:mt-8 md:grid-cols-3 lg:mt-10 lg:grid-cols-4 xl:grid-cols-5">
           {isLoading
             ? [...Array(20)].map((_, index) => (
