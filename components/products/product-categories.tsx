@@ -2,6 +2,8 @@ import { AspectRatio } from 'components/ui/aspect-ratio'
 import Image from 'next/image'
 import Link from 'next/link'
 import Balance from 'react-wrap-balancer'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { Category } from 'swell-js'
 
 export default function ProductCategories({
   categories,
@@ -39,7 +41,7 @@ export default function ProductCategories({
                 <div className="absolute inset-0 z-10 bg-black/60 transition-colors group-hover:bg-black/70" />
                 {category.images && category.images.length > 0 && (
                   <Image
-                    src={category.images[0].src}
+                    src={category.images[0].file?.url as string}
                     alt={category.name}
                     layout="fill"
                     objectFit="cover"

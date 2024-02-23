@@ -1,4 +1,4 @@
-import type { SidebarNavItem } from "types";
+import { SidebarNavItem } from "lib/utils";
 
 export type DashboardConfig = {
   sidebarNav: SidebarNavItem[];

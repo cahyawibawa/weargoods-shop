@@ -22,3 +22,18 @@ export const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : "http://localhost:3000";
 
+  import { type Icons } from "components/icons";
+export interface NavItem {
+  title: string;
+  href?: string;
+  disabled?: boolean;
+  external?: boolean;
+  icon?: keyof typeof Icons;
+  label?: string;
+  description?: string;
+}
+export interface NavItemWithChildren extends NavItem {
+  items: NavItemWithChildren[];
+}
+export type SidebarNavItem = NavItemWithChildren;
+
