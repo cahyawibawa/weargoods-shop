@@ -1,20 +1,11 @@
-"use client";
-import * as React from "react";
-import { CommandMenu } from "components/command-menu";
-import AvatarDropdown from "./avatar-dropdown/avatar-dropdown";
-import useMenu from "hooks/use-menu";
-import useUser from "hooks/use-user";
-import { usePathname } from "next/navigation";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { Fragment } from "react";
-import CartButton from "./cart-button/cart-button";
-import { PanelRightClose } from "lucide-react";
-import { cn } from "lib/utils";
-import { buttonVariants } from "components/ui/button";
-import { siteConfig } from "config/site";
-import { Icons } from "components/icons";
+'use client'
+
+import { Dialog, Transition } from '@headlessui/react'
+import { XMarkIcon } from '@heroicons/react/24/outline'
+import { CommandMenu } from 'components/command-menu'
+import { Icons } from 'components/icons'
+import { Logo } from 'components/logo'
+import { buttonVariants } from 'components/ui/button'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -22,21 +13,31 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "components/ui/navigation-menu";
-
+} from 'components/ui/navigation-menu'
+import { siteConfig } from 'config/site'
+import useMenu from 'hooks/use-menu'
+import useUser from 'hooks/use-user'
+import { cn } from 'lib/utils'
+import { PanelRightClose } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import * as React from 'react'
+import { Fragment } from 'react'
+import AvatarDropdown from './avatar-dropdown/avatar-dropdown'
+import CartButton from './cart-button/cart-button'
 
 type Props = {
-  categories: swell.Category[];
-};
+  categories: swell.Category[]
+}
 
 export default function Navbar({ categories }: Props) {
-  const opened = useMenu((state) => state.header);
-  const open = useMenu((state) => state.open);
-  const close = useMenu((state) => state.close);
-  const handleOpen = () => open("header");
-  const handleClose = () => close("header");
-  const pathname = usePathname();
-  const { user, isLoading } = useUser();
+  const opened = useMenu((state) => state.header)
+  const open = useMenu((state) => state.open)
+  const close = useMenu((state) => state.close)
+  const handleOpen = () => open('header')
+  const handleClose = () => close('header')
+  const pathname = usePathname()
+  const { user, isLoading } = useUser()
 
   return (
     <>
@@ -55,7 +56,7 @@ export default function Navbar({ categories }: Props) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity/25" />
+            <div className="fixed inset-0 bg-black" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-40 flex">
@@ -79,15 +80,14 @@ export default function Navbar({ categories }: Props) {
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-                <div className="mt-2 px-5">
+                <div className="mt-2 px-4">
                   <Link
                     aria-label="Home"
                     href="/"
                     className="flex items-center"
                     onClick={handleClose}
                   >
-                    <Icons.logo className="mr-2 h-4 w-4" aria-hidden="true" />
-                    <span className="font-bold ml-2">{siteConfig.name}</span>
+                    <span className="font-bold">{siteConfig.name}</span>
                   </Link>
                 </div>
 
@@ -96,10 +96,10 @@ export default function Navbar({ categories }: Props) {
                     href="/shop"
                     onClick={handleClose}
                     className={cn(
-                      "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
-                      pathname === "/shop"
-                        ? "text-foreground"
-                        : "text-foreground/60"
+                      'flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80',
+                      pathname === '/shop'
+                        ? 'text-foreground'
+                        : 'text-foreground/60'
                     )}
                   >
                     Shop
@@ -110,10 +110,10 @@ export default function Navbar({ categories }: Props) {
                         href={`/${category.slug}`}
                         onClick={handleClose}
                         className={cn(
-                          "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
+                          'flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80',
                           pathname?.startsWith(`/${category.slug}`)
-                            ? "text-foreground"
-                            : "text-foreground/60"
+                            ? 'text-foreground'
+                            : 'text-foreground/60'
                         )}
                       >
                         {category.name}
@@ -129,10 +129,10 @@ export default function Navbar({ categories }: Props) {
                         href="/signin"
                         onClick={handleClose}
                         className={cn(
-                          "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
-                          pathname?.startsWith("/signin")
-                            ? "text-foreground"
-                            : "text-foreground/60"
+                          'flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80',
+                          pathname?.startsWith('/signin')
+                            ? 'text-foreground'
+                            : 'text-foreground/60'
                         )}
                       >
                         Sign in
@@ -143,10 +143,10 @@ export default function Navbar({ categories }: Props) {
                         href="/signup"
                         onClick={handleClose}
                         className={cn(
-                          "flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80",
-                          pathname?.startsWith("/signup")
-                            ? "text-foreground"
-                            : "text-foreground/60"
+                          'flex items-center self-center text-sm font-medium transition-colors hover:text-foreground/80',
+                          pathname?.startsWith('/signup')
+                            ? 'text-foreground'
+                            : 'text-foreground/60'
                         )}
                       >
                         Create account
@@ -173,14 +173,16 @@ export default function Navbar({ categories }: Props) {
                 <PanelRightClose className="h-5 w-5" aria-hidden="true" />
               </button>
 
-              <div className="ml-4 lg:flex lg:ml-0 hidden" aria-hidden="true">
-                <Link href="/">
-                  <span className="font-bold">{siteConfig.name}</span>
-                  {/* <Icons.logo className="h-4 w-4" /> */}
+              <div className="ml-4 hidden lg:ml-0 lg:flex" aria-hidden="true">
+                <Link href="/" className="mr-6 flex items-center space-x-2">
+                  <Logo className="grayscale" />
+                  <span className="hidden font-bold sm:inline-block">
+                    {siteConfig.name}
+                  </span>
                 </Link>
               </div>
               {/* Filter */}
-              <div className="hidden lg:ml-5 lg:block lg:self-stretch">
+              <div className="hidden lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   <NavigationMenu>
                     <NavigationMenuList>
@@ -234,10 +236,10 @@ export default function Navbar({ categories }: Props) {
                       <div
                         className={cn(
                           buttonVariants({
-                            size: "sm",
-                            variant: "outline",
+                            size: 'sm',
+                            variant: 'outline',
                           }),
-                          "h-9 w-9 p-0"
+                          'h-9 w-9 p-0'
                         )}
                       >
                         <Icons.user className="h-4 w-4" />
@@ -253,12 +255,12 @@ export default function Navbar({ categories }: Props) {
         </nav>
       </header>
     </>
-  );
+  )
 }
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
@@ -266,7 +268,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
             className
           )}
           {...props}
@@ -278,6 +280,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  );
-});
-ListItem.displayName = "ListItem";
+  )
+})
+ListItem.displayName = 'ListItem'
