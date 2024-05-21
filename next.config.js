@@ -16,8 +16,12 @@ const nextConfig = {
         hostname: "images.unsplash.com"
       }
     ],
-    unoptimized: true,
-  },
+  unoptimized: true,
+},
+experimental: {
+  missingSuspenseWithCSRBailout: false,
+  // ppr: true,
+},
 };
 
 module.exports = nextConfig;
