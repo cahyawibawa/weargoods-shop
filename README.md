@@ -1,8 +1,12 @@
 
+[![weargoods](./public/images/weargoods-shop.png)](https://weargoods-shop.vercel.app/)
+
+ <h1 align="center">weargoods-shop</h1>
+
 
 <p align="center">This is an open source e-commerce storefront build with everything new in Next.js 13 and Swell.Js</p>
 
-[![weargoods](./public/images/weargoods-shop.png)](https://weargoods-shop.vercel.app/)
+
 
 ## Tech Stack
 
@@ -12,7 +16,7 @@
 - [Swell](https://www.swell.is/)
 - [React Email](https://react.email)
 
-## Features to be implemented
+## Roadmap
 
 - [x] Full e-commerce support:
   - Product Detail Page
@@ -57,3 +61,7 @@
    ```
 
 6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Credits
+
+[skateshop.sadmn.com](https://skateshop.sadmn.com/)
