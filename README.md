@@ -2,11 +2,12 @@
 
 <p align="center">This is an open source e-commerce storefront build with everything new in Next.js 13 and Swell.Js</p>
 
-[![weargoods](./public/images/home-shots.png)](https://weargoods-shop.vercel.app/)
+[![weargoods](./public/images/weargoods-shop.png)](https://weargoods-shop.vercel.app/)
 
 ## Tech Stack
 
 - [Next.js](https://nextjs.org)
+- [shadcn/ui](https://ui.shadcn.com/)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Swell](https://www.swell.is/)
 - [React Email](https://react.email)
