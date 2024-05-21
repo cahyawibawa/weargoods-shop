@@ -8,7 +8,7 @@ export const siteConfig = {
   ogImage: "https://weargoods-shop.vercel.app/opengraph-image.png",
 
   links: {
-    twitter: "https://twitter.com/lictoyagami",
+    twitter: "https://twitter.com/kyuotaka",
     github: "https://github.com/cahyawibawa/weargoods-shop",
   },
 };
