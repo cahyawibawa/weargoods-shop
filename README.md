@@ -1,4 +1,4 @@
-# [Weargoods](https://weargoods-shop.vercel.app/)
+
 
 <p align="center">This is an open source e-commerce storefront build with everything new in Next.js 13 and Swell.Js</p>
 
